@@ -1,6 +1,6 @@
 import Categories from "@/components/common/categories";
 import HeroSec from "@/components/common/hero-sec";
-import BestSellingProducts from "@/components/modules/home/BestSellingProducts";
+import TopSelling from "@/components/common/top-selling";
 import FeedBack from "@/components/modules/home/FeedBack";
 import FollowUs from "@/components/modules/home/FollowUs";
 import WhereToWork from "@/components/modules/home/WhereToWork";
@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       <HeroSec />
       <Categories />
-      <BestSellingProducts />
+      <TopSelling />
       <WhyRideWithUs />
       <WhereToWork />
       <div className="py-8">

@@ -65,3 +65,6 @@ export const categoryItem: CategoryProps[] = [
     text: "Durable with excellent ride quality",
   },
 ];
+
+export const categoryItemType = categoryItem.map((item) => item.id);
+export type categoryProps = (typeof categoryItemType)[number];
