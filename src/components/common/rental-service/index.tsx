@@ -1,41 +1,69 @@
-import { Check, Calendar, Truck, RotateCcw, Clock } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-
-import RentalOption from '@/components/modules/services/RentalOption';
+import { Check, Calendar, Truck, RotateCcw, Clock } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { RentalOption } from "@/components/reusable/service-card";
 
 const rentalOptions = [
-  { category: 'Mountain Bikes', hourlyRate: 15, dailyRate: 45, weeklyRate: 180 },
-  { category: 'Road Bikes', hourlyRate: 18, dailyRate: 55, weeklyRate: 220 },
-  { category: 'Electric Bikes', hourlyRate: 25, dailyRate: 75, weeklyRate: 300 },
-  { category: 'Hybrid Bikes', hourlyRate: 12, dailyRate: 40, weeklyRate: 160 },
+  {
+    category: "Mountain Bikes",
+    hourlyRate: 15,
+    dailyRate: 45,
+    weeklyRate: 180,
+  },
+  { category: "Road Bikes", hourlyRate: 18, dailyRate: 55, weeklyRate: 220 },
+  {
+    category: "Electric Bikes",
+    hourlyRate: 25,
+    dailyRate: 75,
+    weeklyRate: 300,
+  },
+  { category: "Hybrid Bikes", hourlyRate: 12, dailyRate: 40, weeklyRate: 160 },
 ];
 
 const rentalInfos = [
   {
     icon: <Calendar className="h-5 w-5" />,
-    title: 'Reservation Policy',
-    description: '24-hour advance booking recommended. ID and credit card required.',
+    title: "Reservation Policy",
+    description:
+      "24-hour advance booking recommended. ID and credit card required.",
   },
   {
     icon: <Clock className="h-5 w-5" />,
-    title: 'Hours',
-    description: 'Rentals available 9am-6pm daily. Late returns subject to additional fees.',
+    title: "Hours",
+    description:
+      "Rentals available 9am-6pm daily. Late returns subject to additional fees.",
   },
   {
     icon: <RotateCcw className="h-5 w-5" />,
-    title: 'Included Accessories',
-    description: 'Helmet, lock, and basic repair kit included with all rentals.',
+    title: "Included Accessories",
+    description:
+      "Helmet, lock, and basic repair kit included with all rentals.",
   },
   {
     icon: <Truck className="h-5 w-5" />,
-    title: 'Delivery',
-    description: 'Bike delivery available within 10 miles for an additional fee.',
+    title: "Delivery",
+    description:
+      "Bike delivery available within 10 miles for an additional fee.",
   },
 ];
 
-function RentalInfoItem({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function RentalInfoItem({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
   return (
     <div className="flex items-start">
       <div className="flex-shrink-0 pt-1 text-primary">{icon}</div>
@@ -56,7 +84,7 @@ function GroupDiscountItem({ text }: { text: string }) {
   );
 }
 
-export default function RentalServices() {
+export default function RentalService() {
   return (
     <>
       {/* Rental Options & Info */}
@@ -115,7 +143,8 @@ export default function RentalServices() {
         </CardHeader>
         <CardContent>
           <p className="mb-4">
-            Planning a company outing, team building event, or group ride? We offer special rates for groups of 5 or more bikes.
+            Planning a company outing, team building event, or group ride? We
+            offer special rates for groups of 5 or more bikes.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Group Discounts */}

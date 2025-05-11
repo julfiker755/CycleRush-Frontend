@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import {
-  Phone,
-} from "lucide-react";
+import { Phone } from "lucide-react";
 import ContactInfoCard from "@/components/modules/contact/ContactInfoCard";
 import HoursCard from "@/components/modules/contact/HoursCard";
 import SocialCard from "@/components/modules/contact/SocialCard";
@@ -13,10 +11,12 @@ export default function Contact() {
   return (
     <section className="py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight">Contact Cycle Craze</h1>
+        <h1 className="text-4xl font-bold tracking-tight">
+          Contact Rust Craze
+        </h1>
         <p className="text-lg text-gray-500 mt-4 max-w-2xl mx-auto">
-          We're here to help with all your cycling needs. Reach out to our team for assistance and
-          inquiries.
+          We're here to help with all your cycling needs. Reach out to our team
+          for assistance and inquiries.
         </p>
       </div>
 
@@ -32,7 +32,8 @@ export default function Contact() {
       <div className="mt-16 text-center">
         <h3 className="mb-4">Need Immediate Assistance?</h3>
         <p className="mb-6 max-w-2xl mx-auto">
-          Our customer service team is available during business hours to help with any urgent inquiries.
+          Our customer service team is available during business hours to help
+          with any urgent inquiries.
         </p>
         <Button size="lg">
           <Phone className="h-4 w-4 mr-2" />
