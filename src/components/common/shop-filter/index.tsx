@@ -21,7 +21,7 @@ export const productCategories = [
 
 const productFrameMaterial = ["Aluminum", "Carbon", "Steel", "Titanium"];
 
-export default function Shop_FilterPanel() {
+export default function ShopFilterPanel() {
   const [priceRange, setPriceRange] = useState<number[]>([0, 100000]);
   const [isCategory, setIsCategory] = useState("");
   const [isMaterial, setIsMaterial] = useState("");

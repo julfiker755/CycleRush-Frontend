@@ -7,7 +7,6 @@ import UserLayout from "@/components/layout/UserLayout";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { dashboardRoutes } from "./dashboard.routes";
 import ProtectedRoutes from "@/components/private_routes/protected-routes";
-import Shop from "@/pages/base-pages/Shop";
 import ProductDetails from "@/pages/product-details/ProductDetails";
 import Cart from "@/pages/base-pages/Cart";
 import Checkout from "@/pages/base-pages/Checkout";
@@ -21,6 +20,7 @@ import NotFound from "@/components/shared/not-found";
 import Home from "@/components/view/landing/home";
 import Services from "@/components/view/landing/service";
 import Contact from "@/components/view/landing/contact";
+import Shop from "@/components/view/landing/shop";
 
 const router = createBrowserRouter([
   {
