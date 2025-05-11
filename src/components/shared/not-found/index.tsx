@@ -1,19 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ListFilter, ShoppingCart } from "lucide-react";
+import { ArrowLeft, ShoppingCart, ShieldX } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../navbar/Navbar";
-import Footer from "../../shared/footer/Footer";
-import BottomNavbar from "../bottom-navbar/BottomNavbar";
 
-export default function Four0Four() {
+export default function NotFound() {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar />
-      <BottomNavbar />
-      <section className="py-8">
-        <div className="flex flex-col items-center justify-center py-20">
-          <ListFilter className="h-12 w-12 text-muted-foreground mb-4" />
+      <section className="h-screen w-screen flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <ShieldX className="h-12 w-12 text-muted-foreground mb-4" />
           <h3 className="text-xl font-medium mb-2">Page Not Found!</h3>
           <p className="text-muted-foreground text-center max-w-md">
             Sorry, the page you are looking for doesn't exist or has been moved.
@@ -33,7 +28,6 @@ export default function Four0Four() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

@@ -7,7 +7,6 @@ import UserLayout from "@/components/layout/UserLayout";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { dashboardRoutes } from "./dashboard.routes";
 import ProtectedRoutes from "@/components/private_routes/protected-routes";
-import Home from "@/pages/base-pages/Home";
 import Shop from "@/pages/base-pages/Shop";
 import ProductDetails from "@/pages/product-details/ProductDetails";
 import Services from "@/pages/base-pages/Services";
@@ -19,87 +18,95 @@ import COD_Success from "@/pages/base-pages/OrderSuccess/COD_Success";
 import Wishlist from "@/pages/base-pages/Wishlist";
 import OrderCancel from "@/pages/base-pages/OrderCancel";
 import OrderFail from "@/pages/base-pages/OrderFail";
-import Four0Four from "@/components/modules/404/Four0Four";
 import OrderDetails from "@/pages/order-details/OrderDetails";
+import Home from "@/components/common/home";
+import NotFound from "@/components/shared/not-found";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout />,
-        errorElement: <Four0Four/>,
-        children: [
-            {
-                path: '',
-                element: <Home />
-            },
-            {
-                path: 'shop',
-                element: <Shop />
-            },
-            {
-                path: 'product-details/:id',
-                element: <ProductDetails />
-            },
-            {
-                path: 'order-details/:id',
-                element: <OrderDetails />
-            },
-            {
-                path: 'services',
-                element: <Services />
-            },
-            {
-                path: 'contact',
-                element: <Contact />
-            },
-            {
-                path: 'cart',
-                element: <Cart />
-            },
-            {
-                path: 'wishlist',
-                element: <Wishlist />
-            },
-            {
-                path: 'checkout',
-                element: <Checkout />
-            },
-            {
-                path: 'checkout/OP/success/:tranId',
-                element: <OP_Success />
-            },
-            {
-                path: 'checkout/OP/cancel',
-                element: <OrderCancel />
-            },
-            {
-                path: 'checkout/OP/fail',
-                element: <OrderFail />
-            },
-            {
-                path: 'checkout/COD/success/:id',
-                element: <COD_Success />
-            },
-            {
-                path: '',
-                element: <ProtectedRoutes><UserLayout /></ProtectedRoutes>,
-                children: userRoutes
-            },
-        ]
-    },
-    {
-        path: 'auth',
-        element: <AuthLayout />,
-        errorElement: <Four0Four/>,
-        children: authRoutes
-    },
-    {
-        path: '/dashboard',
-        element: <ProtectedRoutes AdminRoutes={true}><DashboardLayout /></ProtectedRoutes>,
-        errorElement: <Four0Four/>,
-        children: dashboardRoutes
-    },
-
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
+      },
+      {
+        path: "product-details/:id",
+        element: <ProductDetails />,
+      },
+      {
+        path: "order-details/:id",
+        element: <OrderDetails />,
+      },
+      {
+        path: "services",
+        element: <Services />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "checkout/OP/success/:tranId",
+        element: <OP_Success />,
+      },
+      {
+        path: "checkout/OP/cancel",
+        element: <OrderCancel />,
+      },
+      {
+        path: "checkout/OP/fail",
+        element: <OrderFail />,
+      },
+      {
+        path: "checkout/COD/success/:id",
+        element: <COD_Success />,
+      },
+      {
+        path: "",
+        element: (
+          <ProtectedRoutes>
+            <UserLayout />
+          </ProtectedRoutes>
+        ),
+        children: userRoutes,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    errorElement: <NotFound />,
+    children: authRoutes,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoutes AdminRoutes={true}>
+        <DashboardLayout />
+      </ProtectedRoutes>
+    ),
+    errorElement: <NotFound />,
+    children: dashboardRoutes,
+  },
 ]);
 
 export default router;

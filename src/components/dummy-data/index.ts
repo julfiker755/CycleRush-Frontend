@@ -1,1 +1,1 @@
-export * from "../common/home/category"
+export * from "./category"
