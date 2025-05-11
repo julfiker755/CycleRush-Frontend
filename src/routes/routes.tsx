@@ -12,7 +12,6 @@ import Cart from "@/pages/base-pages/Cart";
 import Checkout from "@/pages/base-pages/Checkout";
 import OP_Success from "@/pages/base-pages/OrderSuccess/OP_Success";
 import COD_Success from "@/pages/base-pages/OrderSuccess/COD_Success";
-import Wishlist from "@/pages/base-pages/Wishlist";
 import OrderCancel from "@/pages/base-pages/OrderCancel";
 import OrderFail from "@/pages/base-pages/OrderFail";
 import OrderDetails from "@/pages/order-details/OrderDetails";
@@ -21,6 +20,7 @@ import Home from "@/components/view/landing/home";
 import Services from "@/components/view/landing/service";
 import Contact from "@/components/view/landing/contact";
 import Shop from "@/components/view/landing/shop";
+import Wishlist from "@/components/view/landing/wishlist";
 
 const router = createBrowserRouter([
   {

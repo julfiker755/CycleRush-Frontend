@@ -295,3 +295,46 @@ export const mainItem = [
     updatedAt: "2025-05-02T16:40:15.553Z",
   },
 ];
+
+export const Item = [
+  {
+    _id: "68162b70713643e653c9ef69",
+    name: "BMX Stunt R1",
+    brand: "FlipRide",
+    price: 39000,
+    category: "BMX",
+    frameMaterial: "Steel",
+    wheelSize: 20,
+    quantity: 4,
+    description:
+      '\u003Cblockquote\u003EThe \u003Cstrong\u003EBMX Stunt R1\u003C/strong\u003E is designed for those just starting out or looking to improve their freestyle game. It offers a perfect balance between affordability and stunt performance.\u003C/blockquote\u003E\u003Cblockquote\u003E \u003Cstrong\u003EPros:\u003C/strong\u003E\u003C/blockquote\u003E\u003Col\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003EReinforced steel frame withstands hard landings\u003C/li\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003ECompact size for easy trick execution\u003C/li\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003E110 kg weight capacity with durable components\u003C/li\u003E\u003C/ol\u003E\u003Cp\u003E\u003Cbr\u003E\u003C/p\u003E',
+    images: [
+      "https://res.cloudinary.com/doc50jlhc/image/upload/v1746286472/rhdpxxiu12fm4tcetron.jpg",
+      "https://res.cloudinary.com/doc50jlhc/image/upload/v1746283373/zd2ibavqpfvpfsrepel4.jpg",
+    ],
+    specifications: [],
+    isDeleted: false,
+    createdAt: "2025-05-03T14:42:56.080Z",
+    updatedAt: "2025-05-07T05:42:41.853Z",
+  },
+  {
+    _id: "68162b3c713643e653c9ef62",
+    name: "Volt Jump X2",
+    brand: "E-Wheelz",
+    price: 130000,
+    category: "Electric",
+    frameMaterial: "Titanium",
+    wheelSize: 26,
+    quantity: 36,
+    description:
+      '\u003Cblockquote\u003EPremium and powerful, the \u003Cstrong\u003EVolt Jump X2\u003C/strong\u003E is an advanced electric bike for tech-savvy riders. With its torque-sensing motor, it delivers natural power assist based on your pedaling effort.\u003C/blockquote\u003E\u003Cblockquote\u003E \u003Cstrong\u003EPros:\u003C/strong\u003E\u003C/blockquote\u003E\u003Col\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003E750W motor for effortless acceleration\u003C/li\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003ETitanium frame for strength and weight reduction\u003C/li\u003E\u003Cli data-list="bullet"\u003E\u003Cspan class="ql-ui" contenteditable="false"\u003E\u003C/span\u003E5 power assist levels for personalized rides\u003C/li\u003E\u003C/ol\u003E\u003Cp\u003E\u003Cbr\u003E\u003C/p\u003E',
+    images: [
+      "https://res.cloudinary.com/doc50jlhc/image/upload/v1746286533/ylemf2vyqbgw5lznvths.png",
+      "https://res.cloudinary.com/doc50jlhc/image/upload/v1746283323/z15fiv6bbdt8f7eisi8k.jpg",
+    ],
+    specifications: [],
+    isDeleted: false,
+    createdAt: "2025-05-03T14:42:04.985Z",
+    updatedAt: "2025-05-06T08:39:27.034Z",
+  },
+];

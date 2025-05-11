@@ -8,11 +8,6 @@ import {
   SheetFooter,
   SheetClose,
 } from "@/components/ui/sheet";
-import {
-  selectCurrentCartProducts,
-  clearCart,
-} from "@/redux/features/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { ShoppingCart, Trash2Icon, ShoppingBagIcon } from "lucide-react";
 import {
   AlertDialog,
@@ -27,20 +22,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Link, useNavigate } from "react-router-dom";
 import MCB_SingleProduct from "@/components/shared/navber/MCB_SingleProduct";
+import { Item } from "@/components/dummy-data/data";
 
 export default function MyCart() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const cartProducts = useAppSelector(selectCurrentCartProducts);
+  const cartProducts: any[] = Item;
 
-  const totalPrice = cartProducts.reduce(
-    (total, product) => total + product.price * product.orderQuantity,
-    0
-  );
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+  // const totalPrice = cartProducts.reduce(
+  //   (total, product) => total + product.price * product.orderQuantity,
+  //   0
+  // );
 
   return (
     <Sheet>
@@ -63,7 +54,7 @@ export default function MyCart() {
             <span className="font-semibold text-2xl">
               Your Cart ({cartProducts.length})
             </span>
-            {cartProducts.length > 0 && (
+            {cartProducts?.length > 0 && (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
@@ -85,9 +76,7 @@ export default function MyCart() {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleClearCart}>
-                      Clear
-                    </AlertDialogAction>
+                    <AlertDialogAction>Clear</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
@@ -96,7 +85,13 @@ export default function MyCart() {
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto">
-          {cartProducts.length === 0 ? (
+          {cartProducts.length > 0 ? (
+            <ul className="divide-y">
+              {cartProducts.map((product) => (
+                <MCB_SingleProduct product={product} key={product._id} />
+              ))}
+            </ul>
+          ) : (
             <div className="flex flex-col items-center justify-center h-full py-8 space-y-4 text-center">
               <ShoppingBagIcon className="w-12 h-12 text-gray-400" />
               <h3 className="text-lg font-medium">Your cart is empty</h3>
@@ -109,21 +104,14 @@ export default function MyCart() {
                 </Button>
               </SheetClose>
             </div>
-          ) : (
-            <ul className="divide-y">
-              {cartProducts.map((product) => (
-                <MCB_SingleProduct product={product} key={product._id} />
-              ))}
-            </ul>
           )}
         </div>
-
         {cartProducts.length > 0 && (
           <SheetFooter className="border-t pt-4 mt-auto px-0">
             <div className="w-full space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Subtotal</span>
-                <span className="text-sm font-medium">৳{totalPrice}</span>
+                <span className="text-sm font-medium">$ 88</span>
               </div>
               <p className="text-xs text-gray-500">
                 Shipping calculated at checkout
