@@ -2,7 +2,7 @@ import { FC } from "react";
 import { LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import {
@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Profile from "@/components/profile";
 import { useTheme } from "@/providers/theme-provider";
-import MyCartBtn from "./MyCartBtn";
-import Shop_FilterSheet from "../shop/Shop_FilterSheet";
-import MyWishlistBtn from "./MyWishlistBtn";
+import NavFilterSheet from "@/components/common/shop/nav-filter-sheet";
+import MyCart from "./my-cart";
+import MyWishlist from "./my-wishlist";
 
 interface NavItem {
   label: string;
@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
 ];
 
 const Navbar: FC = () => {
+  const location = useLocation();
   const { theme } = useTheme();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
@@ -49,6 +50,7 @@ const Navbar: FC = () => {
       : isSystemDark
       ? "/logo.png"
       : "/logo-black.png";
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background h-[68px]">
       <section className="!py-0">
@@ -70,7 +72,7 @@ const Navbar: FC = () => {
                 {item.label}
               </Link>
             ))}
-            {user && user?.role === "admin" ? (
+            {/* {user && user?.role === "admin" ? (
               <Link
                 to="/dashboard"
                 className="text-sm font-medium hover:text-primary transition-colors"
@@ -79,12 +81,9 @@ const Navbar: FC = () => {
               </Link>
             ) : (
               ""
-            )}
-            {/* Cart Button */}
-            <MyWishlistBtn />
-            <MyCartBtn />
-
-            {/* Authentication */}
+            )} */}
+            <MyWishlist />
+            <MyCart />
             <ModeToggle />
             {user ? (
               <DropdownMenu>
@@ -147,11 +146,10 @@ const Navbar: FC = () => {
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center gap-2">
-            {/* Cart Button for Mobile */}
-            <MyWishlistBtn />
-            <MyCartBtn />
+            <MyWishlist />
+            <MyCart />
             <ModeToggle />
-            <Shop_FilterSheet />
+            {location?.pathname === "/shop" && <NavFilterSheet />}
           </div>
         </div>
       </section>

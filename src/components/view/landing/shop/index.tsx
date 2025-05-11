@@ -10,7 +10,8 @@ import {
 import ProductCard from "@/components/modules/shop/ProductCard";
 import SearchItems from "@/components/search-items";
 import { mainItem } from "@/components/dummy-data/data";
-import ShopFilterPanel from "@/components/common/shop-filter";
+import ShopFilterPanel from "@/components/common/shop/shop-filter-sheet";
+
 export default function Shop() {
   const handleNameSorting = (value: string) => {
     console.log(value);
