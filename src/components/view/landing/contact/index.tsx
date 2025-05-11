@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-
 import { Phone } from "lucide-react";
-import ContactInfoCard from "@/components/modules/contact/ContactInfoCard";
-import HoursCard from "@/components/modules/contact/HoursCard";
-import SocialCard from "@/components/modules/contact/SocialCard";
-import ContactForm from "@/components/modules/contact/ContactForm";
+import ContactInfo from "@/components/common/contact/contact-info";
+import ContactForm from "@/components/common/contact/contact-from";
+import HoursCard from "@/components/common/contact/contact-hours";
+import SocialCard from "@/components/common/contact/contact-social";
 
 // Main Contact Component
 export default function Contact() {
@@ -23,7 +22,7 @@ export default function Contact() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <ContactForm />
         <div className="space-y-6">
-          <ContactInfoCard />
+          <ContactInfo />
           <HoursCard />
           <SocialCard />
         </div>
