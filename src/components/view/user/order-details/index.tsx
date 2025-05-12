@@ -7,8 +7,29 @@ import {
   PaymentMethodBadge,
 } from "@/components/reusable/bage";
 import { Item } from "@/components/dummy-data/data";
+import { useParams } from "react-router-dom";
 
-export default function OD_OrderData() {
+export default function OrderDetails() {
+  const { id } = useParams();
+  console.log(id);
+
+  //  <section className="py-8">
+  //           <div className="flex flex-col items-center justify-center py-20">
+  //               <ListFilter className="h-12 w-12 text-muted-foreground mb-4" />
+  //               <h3 className="text-xl font-medium mb-2">Order not found!</h3>
+  //               <p className="text-muted-foreground text-center max-w-md">
+  //                   We couldn't find the order details. Please check your order number or contact customer support.
+  //               </p>
+  //               <Button
+  //                   onClick={() => navigate(-1)}
+  //                   variant="outline"
+  //                   className="mt-6"
+  //               >
+  //                   <ArrowLeft />
+  //                   Go Back
+  //               </Button>
+  //           </div>
+  //       </section>
   return (
     <section className="py-6">
       <h1 className="text-3xl font-bold mb-6">Order Details</h1>

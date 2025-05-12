@@ -1,13 +1,13 @@
-import MyOrders from "@/pages/user/MyOrders";
-import Profile from "@/pages/user/Profile";
+import MyOrders from "@/components/view/user/order";
+import Profile from "@/components/view/user/profile";
 
 export const userRoutes = [
-    {
-        path: 'profile',
-        element: <Profile />
-    },
-    {
-        path: 'my-orders',
-        element: <MyOrders />
-    },
-]
+  {
+    path: "profile",
+    element: <Profile />,
+  },
+  {
+    path: "my-orders",
+    element: <MyOrders />,
+  },
+];

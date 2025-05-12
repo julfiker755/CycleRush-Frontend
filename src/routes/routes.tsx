@@ -16,6 +16,7 @@ import Wishlist from "@/components/view/landing/wishlist";
 import Checkout from "@/components/view/landing/checkout";
 import ProductDetails from "@/components/view/landing/shop-details";
 import Cart from "@/components/view/landing/cart";
+import OrderDetails from "@/components/view/user/order-details";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "product-details/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "/order-details/:id",
+        element: <OrderDetails />,
       },
       {
         path: "services",

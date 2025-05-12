@@ -1,6 +1,6 @@
-import AnalyticsChart from "@/components/modules/analytics/AnalyticsChart";
-import AnalyticsTop from "@/components/modules/analytics/AnalyticsTop";
-import AnalyticsTopTenProducts from "@/components/modules/analytics/AnalyticsTopTenProducts";
+import AnalyticsChart from "@/components/common/analytics/analytics-chart";
+import AnalyticsTop from "@/components/common/analytics/analytics-top";
+import AnalyticsTopProduct from "@/components/common/analytics/top-products";
 import { ChartColumnBig } from "lucide-react";
 
 export default function Analytics() {
@@ -19,7 +19,7 @@ export default function Analytics() {
           <AnalyticsTop />
           <AnalyticsChart />
         </div>
-        <AnalyticsTopTenProducts />
+        <AnalyticsTopProduct />
       </div>
     </div>
   );
