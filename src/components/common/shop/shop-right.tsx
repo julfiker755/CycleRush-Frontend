@@ -2,12 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import StatusBadge from "../dashboard/manage-products/MP_StatusBadge";
-import PD_Share from "./PD_Share";
 import { PencilLineIcon } from "lucide-react";
 import WishlistBtn from "@/components/common/wish-btn";
+import ShareIcon from "@/components/reusable/social-icon";
 
-export default function PD_RightSideDetails() {
+export default function RightSideDetails() {
   return (
     <>
       <Card className="w-full border-none shadow-none py-4">
@@ -16,7 +15,6 @@ export default function PD_RightSideDetails() {
           <div className="flex items-start justify-between mb-4">
             <h3 className="font-bold">BMX Stunt R1</h3>
             <div className="flex gap-2 items-end">
-              <StatusBadge quantity={5} />
               <Button variant={"outline"} size={"icon"}>
                 <PencilLineIcon className="cursor-pointer size-5" />
               </Button>
@@ -85,7 +83,7 @@ export default function PD_RightSideDetails() {
           {/* Share section */}
           <div className="mb-6">
             <p className="text-sm font-medium mb-3">Share:</p>
-            <PD_Share />
+            <ShareIcon />
           </div>
         </CardContent>
       </Card>

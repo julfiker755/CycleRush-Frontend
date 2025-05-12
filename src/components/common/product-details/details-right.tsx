@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import StatusBadge from "../dashboard/manage-products/MP_StatusBadge";
-import PD_Share from "./PD_Share";
 import { PencilLineIcon } from "lucide-react";
 import WishlistBtn from "@/components/common/wish-btn";
+import StatusBadge from "@/components/modules/dashboard/manage-products/MP_StatusBadge";
+import PD_Share from "@/components/modules/product-details/PD_Share";
 
 export default function PD_RightSideDetails() {
   return (
@@ -44,7 +44,6 @@ export default function PD_RightSideDetails() {
                 <Input
                   type="number"
                   className="w-12 h-8 text-center border-0 p-0 focus-visible:ring-0"
-                  value={4}
                 />
                 <Button
                   variant="ghost"

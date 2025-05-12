@@ -4,7 +4,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import InnerImageZoom from "react-inner-image-zoom";
 import { Button } from "@/components/ui/button";
 
-const PD_ImageSlider = ({ images }: { images: string[]; id: string }) => {
+const ImageSlider = ({ images }: { images: string[]; id: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
@@ -80,4 +80,4 @@ const PD_ImageSlider = ({ images }: { images: string[]; id: string }) => {
   );
 };
 
-export default PD_ImageSlider;
+export default ImageSlider;

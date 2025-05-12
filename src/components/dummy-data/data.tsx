@@ -338,3 +338,10 @@ export const Item = [
     updatedAt: "2025-05-06T08:39:27.034Z",
   },
 ];
+
+export const imgs = [
+  "https://res.cloudinary.com/doc50jlhc/image/upload/v1746286533/ylemf2vyqbgw5lznvths.png",
+  "https://res.cloudinary.com/doc50jlhc/image/upload/v1746283323/z15fiv6bbdt8f7eisi8k.jpg",
+  "https://res.cloudinary.com/doc50jlhc/image/upload/v1746286472/rhdpxxiu12fm4tcetron.jpg",
+  "https://res.cloudinary.com/doc50jlhc/image/upload/v1746283373/zd2ibavqpfvpfsrepel4.jpg",
+];

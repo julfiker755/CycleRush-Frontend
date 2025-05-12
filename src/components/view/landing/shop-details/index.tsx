@@ -1,6 +1,6 @@
+import ImageSlider from "@/components/common/shop/image-slider";
+import RightSideDetails from "@/components/common/shop/shop-right";
 import { imgs } from "@/components/dummy-data/data";
-import PD_ImageSlider from "@/components/modules/product-details/PD_ImageSlider";
-import PD_RightSideDetails from "@/components/modules/product-details/PD_RightSideDetails";
 import { useParams } from "react-router-dom";
 
 export default function ProductDetails() {
@@ -10,8 +10,8 @@ export default function ProductDetails() {
   return (
     <section className="py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <PD_ImageSlider images={imgs} id="12345" />
-        <PD_RightSideDetails />
+        <ImageSlider images={imgs} id="12345" />
+        <RightSideDetails />
       </div>
     </section>
   );
