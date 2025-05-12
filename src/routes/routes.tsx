@@ -6,12 +6,7 @@ import { userRoutes } from "./user.routes";
 import UserLayout from "@/components/layout/UserLayout";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { dashboardRoutes } from "./dashboard.routes";
-import ProtectedRoutes from "@/components/private_routes/protected-routes";
-import OP_Success from "@/pages/base-pages/OrderSuccess/OP_Success";
-import COD_Success from "@/pages/base-pages/OrderSuccess/COD_Success";
-import OrderCancel from "@/pages/base-pages/OrderCancel";
-import OrderFail from "@/pages/base-pages/OrderFail";
-import OrderDetails from "@/pages/order-details/OrderDetails";
+// my
 import NotFound from "@/components/shared/not-found";
 import Home from "@/components/view/landing/home";
 import Services from "@/components/view/landing/service";
@@ -41,10 +36,6 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path: "order-details/:id",
-        element: <OrderDetails />,
-      },
-      {
         path: "services",
         element: <Services />,
       },
@@ -65,28 +56,8 @@ const router = createBrowserRouter([
         element: <Checkout />,
       },
       {
-        path: "checkout/OP/success/:tranId",
-        element: <OP_Success />,
-      },
-      {
-        path: "checkout/OP/cancel",
-        element: <OrderCancel />,
-      },
-      {
-        path: "checkout/OP/fail",
-        element: <OrderFail />,
-      },
-      {
-        path: "checkout/COD/success/:id",
-        element: <COD_Success />,
-      },
-      {
         path: "",
-        element: (
-          <ProtectedRoutes>
-            <UserLayout />
-          </ProtectedRoutes>
-        ),
+        element: <UserLayout />,
         children: userRoutes,
       },
     ],
@@ -99,11 +70,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <ProtectedRoutes AdminRoutes={true}>
-        <DashboardLayout />
-      </ProtectedRoutes>
-    ),
+    element: <DashboardLayout />,
     errorElement: <NotFound />,
     children: dashboardRoutes,
   },
