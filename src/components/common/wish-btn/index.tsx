@@ -18,7 +18,7 @@ export default function WishlistBtn() {
         <Heart size={18} />
       )}
 
-      <span>Wishlist</span>
+      {/* <span>Wishlist</span> */}
     </Button>
   );
 }

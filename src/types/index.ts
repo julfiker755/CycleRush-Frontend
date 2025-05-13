@@ -1,3 +1,4 @@
+export * from "./common"
 export * from './global.type'
 export * from './user.type'
 export * from './dashboard.type'

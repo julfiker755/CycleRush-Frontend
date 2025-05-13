@@ -1,7 +1,8 @@
 import Analytics from "@/components/view/admin/analytics";
-import ManageOrders from "@/pages/dashboards/ManageOrders";
-import ManageProducts from "@/pages/dashboards/ManageProducts";
-import ManageUsers from "@/pages/dashboards/ManageUsers";
+import ManageOrders from "@/components/view/admin/mange-order";
+import ManageProducts from "@/components/view/admin/mange-products";
+import ManageUsers from "@/components/view/admin/mange-user";
+
 import { DashBoardItemsData, SidebarItems } from "@/types";
 import {
   BarChart2,
