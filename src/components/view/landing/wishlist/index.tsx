@@ -1,4 +1,4 @@
-import { Heart, Trash2Icon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,6 +35,7 @@ export default function Wishlist() {
   //       </section>
   //     );
   //   }
+  // Heart,
   return (
     <section className="py-8">
       <div className="mb-6 flex items-center justify-between">

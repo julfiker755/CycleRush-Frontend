@@ -57,7 +57,7 @@ export default function SingleOrder({
   index,
 }: {
   order: IOrder;
-  index: number;
+  index?: number;
 }) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [orderDetailsDialogOpen, setOrderDetailsDialogOpen] = useState(false);
@@ -65,6 +65,7 @@ export default function SingleOrder({
 
   const handleStatusChange = async (value: (typeof order_status)[number]) => {
     console.log(value);
+    console.log(index);
   };
 
   const deleteOrder = async () => {

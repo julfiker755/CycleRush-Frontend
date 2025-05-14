@@ -15,6 +15,9 @@ type PropsType = {
   product: WishlistProductType;
 };
 export default function WishlistCard({ product }: PropsType) {
+  const productImage = Array.isArray(product.image)
+    ? product.image[0]
+    : product.image || "/api/placeholder/64/64";
   return (
     <TableRow className="relative">
       <TableCell>
@@ -28,7 +31,7 @@ export default function WishlistCard({ product }: PropsType) {
         <div className="flex items-center space-x-4 relative">
           <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden">
             <img
-              src={product?.images[0]}
+              src={productImage}
               alt={product.name}
               className="w-full h-full object-cover"
               onError={(e) => {

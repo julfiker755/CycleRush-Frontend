@@ -10,7 +10,7 @@ export default function HeroSec() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left content */}
           <section className="space-y-6">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/30 text-white text-sm font-medium mb-2">
               <span className="mr-1">New 2025 Collection</span>
               <span className="flex-shrink-0 w-1 h-1 mx-2 rounded-full bg-primary"></span>
               <span>Just Arrived</span>
@@ -53,9 +53,9 @@ export default function HeroSec() {
 
       {/* Full-screen background image - only visible on small screens */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-black/50 z-0"></div>
+        <div className="absolute inset-0 bg-black/35 z-0"></div>
         <img
-          src="/hero-img.jpg"
+          src="/hero-bg.webp"
           alt="Mountain biking adventure"
           className="w-full h-full object-cover"
         />

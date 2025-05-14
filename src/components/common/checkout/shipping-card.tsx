@@ -1,29 +1,30 @@
 import { Separator } from "@/components/ui/separator";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+// import {
+//   AlertDialog,
+//   AlertDialogAction,
+//   AlertDialogCancel,
+//   AlertDialogContent,
+//   AlertDialogDescription,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogTitle,
+//   AlertDialogTrigger,
+// } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { MinusIcon, PlusIcon, Trash2Icon, X } from "lucide-react";
+import { MinusIcon, PlusIcon, X } from "lucide-react";
 import { CartProduct } from "@/types";
 
 type PropsType = {
   product: CartProduct;
-  isProcessing: boolean;
-  productsLength: number;
 };
 export default function ShippingProduct({
   product,
-  isProcessing,
-  productsLength,
-}: PropsType) {
+}: // isProcessing,
+// productsLength,
+PropsType) {
+  const productImage = Array.isArray(product.image)
+    ? product.image[0]
+    : product.image || "/api/placeholder/64/64";
   return (
     <div className="relative flex flex-col gap-2">
       {/* isLoading */}
@@ -34,7 +35,7 @@ export default function ShippingProduct({
       <div className="flex gap-3">
         <div className="w-14 h-14 bg-gray-100 rounded overflow-hidden">
           <img
-            src={product?.images[0]}
+            src={productImage}
             alt={product.name}
             className="w-full h-full object-cover"
           />
@@ -58,7 +59,7 @@ export default function ShippingProduct({
           </div>
         </div>
         <div className="h-full">
-          {productsLength > 1 && (
+          {/* {products > 1 && (
             <div className="flex justify-end items-end">
               <AlertDialog>
                 <AlertDialogTrigger asChild>
@@ -66,7 +67,6 @@ export default function ShippingProduct({
                     variant="ghost"
                     size="icon"
                     className="h-6 w-6 text-gray-400 hover:text-red-500"
-                    disabled={isProcessing}
                   >
                     <Trash2Icon className="h-3 w-3" />
                   </Button>
@@ -86,7 +86,7 @@ export default function ShippingProduct({
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-          )}
+          )} */}
           <p className="font-medium text-sm">৳ 6</p>
         </div>
       </div>

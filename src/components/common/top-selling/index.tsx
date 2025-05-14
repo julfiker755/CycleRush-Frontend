@@ -78,9 +78,7 @@ export default function TopSelling() {
                       variant="outline"
                       className="flex items-center gap-2 hover:bg-accent hover:text-accent-foreground"
                     >
-                      <Link to={`/product-details/${bike.productId}`}>
-                        View
-                      </Link>
+                      <Link to={`/product-details/1`}>View</Link>
                     </Button>
                   </div>
                 </CardContent>

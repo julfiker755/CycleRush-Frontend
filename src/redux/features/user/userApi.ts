@@ -1,14 +1,14 @@
-import { TQueryParams, TResponseRedux, TUserData } from "@/types";
+import {TResponseRedux, TUserData } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // GET /users
     users: builder.query({
-      query: (args: TQueryParams[] | undefined) => {
+      query: (args:any) => {
         const params = new URLSearchParams();
         if (args) {
-          args.forEach((item) => {
+          args.forEach((item:any) => {
             params.append(item.name as string, item.value as string);
           });
         }

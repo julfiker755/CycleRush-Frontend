@@ -17,8 +17,8 @@ export default function ShippingOrder() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="max-h-60 overflow-y-auto space-y-4">
-          {Item.map((product) => (
-            <ShippingProduct product={product} key={product._id} />
+          {Item.map((product: any, index: number) => (
+            <ShippingProduct product={product} key={index} />
           ))}
         </div>
 

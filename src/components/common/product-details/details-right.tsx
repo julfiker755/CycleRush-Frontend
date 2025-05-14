@@ -4,8 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { PencilLineIcon } from "lucide-react";
 import WishlistBtn from "@/components/common/wish-btn";
-import StatusBadge from "@/components/modules/dashboard/manage-products/MP_StatusBadge";
-import PD_Share from "@/components/modules/product-details/PD_Share";
 
 export default function PD_RightSideDetails() {
   return (
@@ -16,7 +14,7 @@ export default function PD_RightSideDetails() {
           <div className="flex items-start justify-between mb-4">
             <h3 className="font-bold">BMX Stunt R1</h3>
             <div className="flex gap-2 items-end">
-              <StatusBadge quantity={5} />
+              {/* <StatusBadge quantity={5} /> */} 55
               <Button variant={"outline"} size={"icon"}>
                 <PencilLineIcon className="cursor-pointer size-5" />
               </Button>
@@ -84,7 +82,7 @@ export default function PD_RightSideDetails() {
           {/* Share section */}
           <div className="mb-6">
             <p className="text-sm font-medium mb-3">Share:</p>
-            <PD_Share />
+            ff
           </div>
         </CardContent>
       </Card>
