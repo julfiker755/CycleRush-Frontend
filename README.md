@@ -1,49 +1,63 @@
 # 🚴 CycleRush
 
-> Cycle-Rust is a modern bicycle e-commerce platform designed to deliver a seamless user experience, robust admin capabilities, and complete backend integration with secure payment processing and advanced analytics.
-
-## 📂 Server
-
-Looking for the backend? Check out the **[CycleRush Backend – NoSQL Version](https://github.com/julfiker755/CycleRush-Backend.git)**.
+> **CycleRush** is a modern bicycle e-commerce platform crafted for seamless shopping experiences, powerful admin control, and secure backend integration. From smooth UI interactions to Stripe-powered payments and analytics, CycleRush is designed for performance and scalability.
 
 ---
 
-## 🚀 Tech Stack
+## 📂 Backend Repository
+
+Looking for the server-side code? Explore the **[CycleRush Backend – NoSQL Version](https://github.com/julfiker755/CycleRush-Backend.git)**.
+
+---
+
+## 🚀 Tech Stack Overview
 
 ### 🧩 Core Technologies
 
-- **Next.js** – React framework with routing, SSR, and API handling  
-- **TypeScript** – Statically typed JavaScript for better scalability and safety
+- **React.js** – Component-based UI library for building interactive UIs  
+- **React Router DOM** – Declarative routing for single-page React apps  
+- **TypeScript** – Statically typed JavaScript for improved reliability and maintainability  
 
-### 🎨 UI & UX
+---
 
-- **Tailwind CSS v4** – Utility-first CSS for rapid UI development  
-- **Radix UI** – Accessible, unstyled component primitives  
-- **Framer Motion** – Powerful animation library for React  
-- **Embla Carousel** – Lightweight, mobile-first carousel  
-- **Slick Carousel** – Responsive slider for content display  
-- **Sonner** – Elegant and lightweight toast notifications  
+### 🎨 UI & UX Design
+
+- **Tailwind CSS v4** – Utility-first CSS framework for rapid styling  
+- **Radix UI** – Low-level, accessible component primitives  
+- **Framer Motion** – Smooth animations and transitions in React  
+- **Embla Carousel** – Lightweight and responsive carousel for content sliders  
+- **Slick Carousel** – Feature-rich responsive slider  
+- **Sonner** – Minimal, stylish toast notifications  
+
+---
 
 ### ⚙️ State Management
 
-- **Redux Toolkit** – Simplified Redux with best practices built-in  
+- **Redux Toolkit** – Modern Redux approach with less boilerplate  
+- **RTK Query** – Powerful, integrated data fetching and caching for Redux  
 
-### 🔄 Data Fetching
+---
 
-- **Axios** – Promise-based HTTP client  
-- **RTK Query** – Integrated data fetching with Redux Toolkit  
+### 🔄 API & Data Fetching
 
-### 📋 Form Handling & Validation
+- **Axios** – Promise-based HTTP client for API integration  
+- **RTK Query** – Simplifies fetching, caching, and updating server state  
 
-- **React Hook Form** – Flexible and performant form library  
-- **Zod** – Type-safe schema validation with great developer experience  
+---
 
-### 🛠️ Utilities & Tools
+### 📋 Forms & Validation
+
+- **React Hook Form** – Performant, flexible form library for React  
+- **Zod** – Type-safe schema validation for form and API data  
+
+---
+
+### 🛠️ Utilities & Developer Tools
 
 - **date-fns** – Modern date utility library  
-- **jwt-decode** – Decode JWT tokens for authentication  
-- **Recharts** – Composable charts for data visualization  
-- **Stripe** – Seamless payment processing integration  
+- **jwt-decode** – Parse and inspect JWT tokens  
+- **Recharts** – Modular charting components for data visualization  
+- **Stripe** – Secure and seamless payment gateway integration  
 
 ---
 
