@@ -144,6 +144,8 @@ export default function ProductGallery({
     // }
   };
 
+  console.log(productId);
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogContent
