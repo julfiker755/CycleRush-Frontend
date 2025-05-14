@@ -1,3 +1,5 @@
+import Heading from "@/components/reusable/heading";
+
 const whyRideWithUs = [
   {
     title: "Road Bikes",
@@ -32,14 +34,11 @@ const whyRideWithUs = [
 export default function WhyRideWithUs() {
   return (
     <div className="py-16 bg-gray-50 rounded-lg">
-      <div className="mb-10 text-center max-w-3xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-1">
-          Why Ride <span className="text-primary">With Us?</span>
-        </h2>
-        <p className="text-muted-foreground text-lg">
-          Discover the perfect bike for your lifestyle and adventure needsremium
-        </p>
-      </div>
+      <Heading
+        title="Why Ride"
+        highlight="With Us?"
+        text=" Discover the perfect bike for your lifestyle and adventure needsremium"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
           <img
@@ -49,29 +48,27 @@ export default function WhyRideWithUs() {
           />
         </div>
 
-        <div className="space-y-4">
-          <div className="space-y-8">
-            {whyRideWithUs.map((item, index) => (
-              <div
-                key={index}
-                className="flex gap-4 group  rounded-lg transition-all duration-300"
-              >
-                <div className="space-y-2">
-                  <h4 className="text-primary font-semibold text-lg group-hover:text-primary/80">
-                    {item.title}
-                  </h4>
-                  <ul className="space-y-3 ml-2 text-gray-700">
-                    {item.points.map((point, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        <div className="space-y-8 px-2 lg:px-0">
+          {whyRideWithUs.map((item, index) => (
+            <div
+              key={index}
+              className="flex gap-4 group  rounded-lg transition-all duration-300"
+            >
+              <div className="space-y-2">
+                <h4 className="text-primary font-semibold text-lg group-hover:text-primary/80">
+                  {item.title}
+                </h4>
+                <ul className="space-y-3 ml-2 text-gray-700">
+                  {item.points.map((point, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

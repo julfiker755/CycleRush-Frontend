@@ -5,21 +5,20 @@ import { Navigation } from "swiper/modules";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { mainItem } from "@/components/dummy-data/data";
+import Heading from "@/components/reusable/heading";
 
 export default function TopSelling() {
   return (
     <section className="w-full py-8">
       <div className="flex justify-between items-end relative">
-        <div className="mb-10 text-center max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-1">
-            Premium Performance <span className="text-primary">Bicycles </span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Discover premium bicycles engineered for performance, comfort, and
-            style
-          </p>
-        </div>
-        <div className="space-x-2 relative">
+        <Heading
+          title="Premium Performance "
+          highlight="Bicycles"
+          text="Discover premium bicycles engineered for performance, comfort, and
+            style"
+        />
+
+        <div className="space-x-2 relative flex">
           <Button
             variant="outline"
             size="icon"

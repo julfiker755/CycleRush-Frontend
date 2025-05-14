@@ -77,13 +77,13 @@ export default function Footer() {
             <div className="flex items-start gap-2">
               <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
               <span className="text-sm text-muted-foreground break-words">
-                muhammadjunayetmaruf@gmail.com
+                Julfiker@gmail.com
               </span>
             </div>
             <div className="flex items-start gap-2">
               <MapPin className="h-5 w-5 text-muted-foreground mt-0.5" />
               <span className="text-sm text-muted-foreground">
-                Feni Polytechnic Road, Feni Sadar, Chattogram, Bangladesh
+                Dinajpur Polytechnic Road, dinajpur Sadar, Bangladesh
               </span>
             </div>
             <div className="flex space-x-3">
