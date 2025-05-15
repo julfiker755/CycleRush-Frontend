@@ -2,8 +2,7 @@ import Analytics from "@/components/view/admin/analytics";
 import ManageOrders from "@/components/view/admin/mange-order";
 import ManageProducts from "@/components/view/admin/mange-products";
 import ManageUsers from "@/components/view/admin/mange-user";
-
-import { DashBoardItemsData, SidebarItems } from "@/types";
+import { DashboardProps, SidebarProps } from "@/types";
 import {
   BarChart2,
   Users,
@@ -11,7 +10,7 @@ import {
   SquareChartGantt,
 } from "lucide-react";
 
-const dashBoardItemsData: DashBoardItemsData[] = [
+const dashBoardItemsData: DashboardProps[] = [
   {
     title: "Analytics",
     icon: <BarChart2 size={18} />,
@@ -42,11 +41,11 @@ const routes = dashBoardItemsData.map((item) => ({
   path: item.path,
   element: item.component,
 }));
-const sidebarItems: SidebarItems[] = dashBoardItemsData.map((item) => ({
+const sidebarItems: SidebarProps[] = dashBoardItemsData.map((item) => ({
   title: item.title,
   icon: item.icon,
   path: item.path,
   section: item?.section,
 }));
 
-export const dashboardItems = { routes, sidebarItems };
+export const dashboardItem = { routes, sidebarItems };

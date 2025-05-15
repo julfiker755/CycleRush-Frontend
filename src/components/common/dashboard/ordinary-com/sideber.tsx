@@ -6,15 +6,15 @@ import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "@/providers/theme-provider";
 import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
-import { dashboardItems } from "@/utils/sidebar-item-and-routes-generator";
-import { SidebarItems } from "@/types";
 import { SidebarModeToggle } from "@/components/sidebar-mode-toggle";
+import { dashboardItem } from "./sideber-items";
+import { SidebarProps } from "@/types";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const { theme } = useTheme();
   const dispatch = useAppDispatch();
-  const sidebarItems: SidebarItems[] = dashboardItems.sidebarItems;
+  const sidebarItems: SidebarProps[] = dashboardItem.sidebarItems;
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);

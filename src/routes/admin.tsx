@@ -1,11 +1,11 @@
+import { dashboardItem } from "@/components/common/dashboard/ordinary-com/sideber-items";
 import DashboardLayout from "@/components/layout/dashboard";
-import { dashboardItems } from "@/utils/sidebar-item-and-routes-generator";
 
 const adminRoutes = [
   {
     path: "/dashboard",
     element: <DashboardLayout />,
-    children: [...dashboardItems.routes],
+    children: [...dashboardItem.routes],
   },
 ];
 
