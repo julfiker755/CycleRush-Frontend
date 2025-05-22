@@ -8,11 +8,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import SearchItems from "@/components/search-items";
-import { mainItem } from "@/components/dummy-data/data";
 import ShopFilterPanel from "@/components/common/shop/shop-filter-sheet";
 import ProductCard from "@/components/common/shop/product-card";
+import { useGetProductQuery } from "@/redux/api/productApi";
 
 export default function Shop() {
+  const { data: Products, isLoading } = useGetProductQuery({});
   const handleNameSorting = (value: string) => {
     console.log(value);
   };
@@ -53,22 +54,28 @@ export default function Shop() {
           </div>
         </div>
         {/* Products Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {mainItem.map((product: any) => (
-              <motion.div
-                key={product._id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+        {isLoading ? (
+          <h1 className="text-2xl font-semibold">Loading ....</h1>
+        ) : Products?.length > 0 ? (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <AnimatePresence>
+              {Products?.map((product: any) => (
+                <motion.div
+                  key={product._id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        ) : (
+          <h1>Product not found</h1>
+        )}
       </div>
     </section>
   );

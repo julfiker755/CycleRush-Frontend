@@ -7,12 +7,12 @@ import { RouterProvider } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner.tsx";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { persistor, store } from "./redux/store.ts";
 import "swiper/css";
 import "swiper/css/navigation";
 import "react-photo-view/dist/react-photo-view.css";
 import "react-inner-image-zoom/lib/styles.min.css";
 import router from "./routes/index.tsx";
+import { persistor, store } from "./redux/store.ts";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
