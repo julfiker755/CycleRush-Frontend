@@ -1,9 +1,9 @@
 import { order_status, paymentMethod } from "@/constant/order.const";
-import { IProduct } from "./product.type";
+
 
 export type TOrderStatus = typeof order_status[number]
 export interface IOrderedProduct {
-    product: IProduct;
+    product:any;
     quantity: number;
     name: string;
     price: number;

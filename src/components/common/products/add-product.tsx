@@ -15,7 +15,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { productFormSchema } from "@/schemas/product-form-schema";
-import { IProduct } from "@/types";
 import ProductForm from "@/components/common/products/add-from";
 // Form schema (simplified - without images and specifications)
 
@@ -37,7 +36,7 @@ export default function AddProduct() {
   });
 
   const onSubmit = async (data: z.infer<typeof productFormSchema>) => {
-    const productNewData: Omit<IProduct, "_id"> = {
+    const productNewData: Omit<any, "_id"> = {
       brand: data.brand,
       price: data.price,
       category: data.category,

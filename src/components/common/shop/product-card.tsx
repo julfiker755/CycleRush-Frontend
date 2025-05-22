@@ -1,12 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { IProduct } from "@/types";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Info } from "lucide-react";
 import WishlistBtn from "../wish-btn";
 
-export default function ProductCard({ product }: { product: IProduct }) {
+export default function ProductCard({ product }: { product: any }) {
   return (
     <Card className="overflow-hidden group transition-all duration-300 hover:shadow-lg pt-0 gap-y-2 sm:gap-y-6">
       <div className="relative bg-gray-50 py-1 flex justify-center items-center overflow-hidden">

@@ -13,13 +13,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction } from "react";
-import { IProduct } from "@/types";
 import { updateProductFormSchema } from "@/schemas/product-form-schema";
 import ProductForm from "@/components/common/mange-products/product-from";
 type PropsType = {
   isDialogOpen: boolean;
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
-  product: IProduct;
+  product: any;
 };
 export default function EditProduct({
   isDialogOpen,
@@ -41,17 +40,16 @@ export default function EditProduct({
   });
 
   const onSubmit = async (data: z.infer<typeof updateProductFormSchema>) => {
-    const productNewData: Omit<IProduct, "_id" | "images" | "specifications"> =
-      {
-        brand: data.brand,
-        price: data.price,
-        category: data.category,
-        description: data.description,
-        frameMaterial: data.frameMaterial,
-        name: data.name,
-        quantity: data.quantity,
-        wheelSize: data.wheelSize,
-      };
+    const productNewData: Omit<any, "_id" | "images" | "specifications"> = {
+      brand: data.brand,
+      price: data.price,
+      category: data.category,
+      description: data.description,
+      frameMaterial: data.frameMaterial,
+      name: data.name,
+      quantity: data.quantity,
+      wheelSize: data.wheelSize,
+    };
 
     console.log(productNewData);
   };
