@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 const productApi = baseApi.injectEndpoints({
@@ -8,6 +9,7 @@ const productApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
+      providesTags:[tagTypes.product]
     })
   }),
 });

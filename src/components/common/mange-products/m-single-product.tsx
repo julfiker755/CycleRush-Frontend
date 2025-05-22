@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { IProduct } from "@/types";
 import {
   Pencil,
   Trash,
@@ -29,7 +28,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import ProductGallery from "@/components/common/mange-products/product-gallery";
 import EditProduct from "@/components/common/mange-products/edit-from";
-export default function MSingleProduct({ product }: { product: IProduct }) {
+export default function MSingleProduct({ product }: { product: any }) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -54,9 +53,9 @@ export default function MSingleProduct({ product }: { product: IProduct }) {
         </TableCell>
         <TableCell className="font-medium">{product.name}</TableCell>
         <TableCell>{product.category}</TableCell>
-        <TableCell>৳{product.price}</TableCell>
-        <TableCell>{product.quantity}</TableCell>
-        <TableCell>{/* <MO_StatusBadge quantity={6} /> */} 44</TableCell>
+        <TableCell>{product.frameMaterial}</TableCell>
+        <TableCell>{product.price}</TableCell>
+        <TableCell>{product.inStock}</TableCell>
         <TableCell className="text-right">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

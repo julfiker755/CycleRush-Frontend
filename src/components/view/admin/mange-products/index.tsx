@@ -23,11 +23,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import AddProduct from "@/components/common/products/add-product";
-import { Item } from "@/components/dummy-data/data";
 import MSingleProduct from "@/components/common/mange-products/m-single-product";
 import { productCategories } from "@/constant/product.const";
+import { useGetProductQuery } from "@/redux/api/productApi";
 
 export default function ManageProducts() {
+  const { data: products } = useGetProductQuery({});
   return (
     <div className="container mx-auto py-6 space-y-6">
       {/* Top header */}
@@ -86,14 +87,14 @@ export default function ManageProducts() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableHead>
+              <TableHead>Material</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Stock</TableHead>
-              <TableHead>Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {Item.map((product: any) => (
+            {products?.map((product: any) => (
               <MSingleProduct key={product._id} product={product} />
             ))}
           </TableBody>
