@@ -1,7 +1,8 @@
 import { getLocalStroage} from "@/lib/utils";
 import { ResponseSuccessProps } from "@/types";
 import axios from "axios";
-import { GenerateAccessToken } from "../gen-acc-token";
+import { GenerateAccessToken } from "./generate-token";
+
 
 const instance = axios.create();
 instance.defaults.headers.post["Content-Type"] = "application/json";

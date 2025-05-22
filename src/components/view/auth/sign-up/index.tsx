@@ -19,29 +19,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link } from "react-router-dom";
-import { passwordValidation } from "@/schemas/password-validation";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PassToggle from "@/components/reusable/pass-toggle";
-
-// Define the form schema with zod
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: passwordValidation,
-  contactNumber: z
-    .string()
-    .min(10, { message: "Please enter a valid contact number" }),
-});
+import { signUpSchema } from "@/schemas";
+import { useSignUpCustomerMutation } from "@/redux/features/auth/authApi";
+import { ResponseApiErrors, ShowToast } from "@/helpers";
+import { delay } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 // Create a type from the schema
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
-  // Initialize form with TypeScript types
+  const navigate = useNavigate();
+  const [signUpCustomer, { isLoading }] = useSignUpCustomerMutation();
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -51,8 +46,19 @@ export default function SignUp() {
   });
 
   // Form submission handler
-  const onSubmit = async (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (values: FormValues) => {
+    const res = await signUpCustomer(values).unwrap();
+    if (res._id) {
+      ShowToast({
+        type: "success",
+        title: "Sign Up Successful",
+        description: "You have successfully Sign Up",
+      });
+      await delay(3000);
+      navigate("/auth/login");
+      form.reset();
+    }
+    ResponseApiErrors(res, form);
   };
 
   return (
@@ -157,15 +163,14 @@ export default function SignUp() {
             />
 
             <Button type="submit" className="w-full">
-              {/* {isLoading ? (
+              {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Creating Account...
                 </>
               ) : (
                 "Create Account"
-              )} */}
-              Create Account
+              )}
             </Button>
           </form>
         </Form>

@@ -1,35 +1,34 @@
-import { useMyDataQuery } from "@/redux/features/user/userApi";
-import { useState } from "react";
-import { Skeleton } from "./ui/skeleton";
+// import { useState } from "react";
+// import { Skeleton } from "./ui/skeleton";
 
 export default function Profile() {
-    const { data, isLoading, isError } = useMyDataQuery(undefined);
-    const [imageLoading, setImageLoading] = useState(true);
+  //   const [imageLoading, setImageLoading] = useState(true);
 
-    const profile = data?.data?.profile || '/default-user.png';
+  //   const profile = data?.data?.profile || "/default-user.png";
 
-    const handleImageLoaded = () => {
-        setImageLoading(false);
-    };
+  //   const handleImageLoaded = () => {
+  //     setImageLoading(false);
+  //   };
 
-    const handleImageError = () => {
-        setImageLoading(false);
-    };
+  //   const handleImageError = () => {
+  //     setImageLoading(false);
+  //   };
 
-    return (
-        <div className="w-full h-full overflow-hidden">
-            {isLoading && (
+  return (
+    <div className="w-full h-full overflow-hidden">
+      <h1>Profile</h1>
+      {/* {isLoading && (
                <Skeleton className="aspect-square w-full rounded-full" />
-            )}
-            
-            {isError && (
+            )} */}
+
+      {/* {isError && (
                 <img 
                 src='/default-user.png' 
                 alt="Profile"
                 className={`w-full h-full object-cover rounded-full transition-opacity duration-300`}
             />
-            )}
-            
+            )} */}
+      {/*             
             {!isLoading && !isError && (
                 <>
                     {imageLoading && (
@@ -44,7 +43,7 @@ export default function Profile() {
                         onError={handleImageError}
                     />
                 </>
-            )}
-        </div>
-    );
+            )} */}
+    </div>
+  );
 }

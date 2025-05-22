@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { LogOut, User } from "lucide-react";
+import { LogOut, ShoppingBag, User, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,11 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Profile from "@/components/profile";
 import { useTheme } from "@/providers/theme-provider";
 import NavFilterSheet from "@/components/common/shop/nav-filter-sheet";
 import MyCart from "./my-cart";
 import MyWishlist from "./my-wishlist";
+import { logout } from "@/redux/features/auth/authSlice";
 
 interface NavItem {
   label: string;
@@ -33,7 +32,7 @@ const Navbar: FC = () => {
   const location = useLocation();
   const { theme } = useTheme();
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectCurrentUser);
+  const { user } = useAppSelector((state) => state.auth);
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -72,29 +71,18 @@ const Navbar: FC = () => {
                 {item.label}
               </Link>
             ))}
-            {/* {user && user?.role === "admin" ? (
-              <Link
-                to="/dashboard"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Dashboard
-              </Link>
-            ) : (
-              ""
-            )} */}
             <MyWishlist />
             <MyCart />
             <ModeToggle />
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full overflow-hidden border border-muted w-8 h-8 p-0"
-                  >
-                    <Profile />
-                  </Button>
+                  <button className="rounded-full overflow-hidden cursor-pointer border border-muted p-0">
+                    <UserRound
+                      className="text-gray-500 h-8 w-8 m-1"
+                      size={30}
+                    />
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <Link to="/profile">
@@ -103,25 +91,15 @@ const Navbar: FC = () => {
                       <span>My Profile</span>
                     </DropdownMenuItem>
                   </Link>
-                  {/* {user.role === 'user' &&  */}
                   <Link to="/my-orders">
                     <DropdownMenuItem className="cursor-pointer">
+                      <ShoppingBag className="mr-2 h-4 w-4" />
                       <span>My Orders</span>
                     </DropdownMenuItem>
                   </Link>
-                  {/* } */}
-                  {user && user.role === "admin" ? (
-                    <Link to="/dashboard">
-                      <DropdownMenuItem className="cursor-pointer">
-                        <span>Dashboard</span>
-                      </DropdownMenuItem>
-                    </Link>
-                  ) : (
-                    ""
-                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    className="cursor-pointer text-destructive focus:text-destructive"
+                    className="cursor-pointer text-primary"
                     onClick={handleLogout}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -141,7 +119,6 @@ const Navbar: FC = () => {
                 </Button>
               </Link>
             )}
-            {/* Theme toggle button */}
           </nav>
 
           {/* Mobile Navigation */}

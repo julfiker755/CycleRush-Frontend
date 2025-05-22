@@ -4,7 +4,6 @@ import { tagTypesList } from '../tag-types'
 
 
 
-
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({ baseUrl:import.meta.env.VITE_PUBLIC_API_URL}),

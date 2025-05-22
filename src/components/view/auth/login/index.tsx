@@ -19,26 +19,28 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PassToggle from "@/components/reusable/pass-toggle";
-
-// Define the form schema with zod
-const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z
-    .string()
-    .min(6, { message: "Password must be at least 6 characters" }),
-});
+import { loginSchema } from "@/schemas";
+import { useUserLoginMutation } from "@/redux/features/auth/authApi";
+import { Loader2 } from "lucide-react";
+import { ResponseApiErrors, ShowToast } from "@/helpers";
+import { useAppDispatch } from "@/redux/hooks";
+import { decodedToken } from "@/helpers/axios/generate-token";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { delay } from "@/lib/utils";
 
 // Create a type from the schema
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof loginSchema>;
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
-  // Initialize form with TypeScript types
+  const [userLogin, { isLoading }] = useUserLoginMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -46,8 +48,26 @@ export default function Login() {
   });
 
   // Form submission handler
-  const onSubmit = async (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (values: FormValues) => {
+    const res = await userLogin(values).unwrap();
+    const token = res?.refreshToken;
+    const userInfo = token && decodedToken(token);
+    if (token) {
+      dispatch(setUser({ user: userInfo, token: token }));
+      ShowToast({
+        type: "success",
+        title: "Login Successful",
+        description: "You have successfully logged in",
+      });
+      await delay(3000);
+      if (userInfo?.role === "admin") {
+        navigate("/dashboard/analytics");
+      } else {
+        navigate("/");
+      }
+      form.reset();
+    }
+    ResponseApiErrors(res, form);
   };
 
   return (
@@ -136,16 +156,15 @@ export default function Login() {
               </div>
             </div>
 
-            <Button type="submit" className="w-full">
-              {/* {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Signing in...
-                                </>
-                            ) : (
-                                "Sign in"
-                            )} */}
-              Sign in
+            <Button disabled={isLoading} type="submit" className="w-full">
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                "Sign in"
+              )}
             </Button>
           </form>
         </Form>

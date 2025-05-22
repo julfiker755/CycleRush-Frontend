@@ -1,19 +1,15 @@
 type ApiResponseProps = {
-    success: boolean;
-    message:string,
-    errors?: { field: string; code?:string; message: string }[];
-  };
-  
-  export const ResponseApiErrors = (res:ApiResponseProps, form: any) => {
-    if (!res?.success && res?.errors) {
-      res.errors.forEach((error) => {
-        form.setError(error.field, {
-          type: 'manual',
-          message: error.message || 'Invalid value',
-        });
+  success: boolean;
+  message: string;
+  error?: any;
+};
+export const ResponseApiErrors = (res: ApiResponseProps, form: any) => {
+  if (!res?.success && res?.error?.customErrors) {
+    res.error.customErrors.forEach((err: any) => {
+      form.setError(err.field, {
+        type: "manual",
+        message: err.message || "Invalid value",
       });
-    }
-  };
-  
-
- 
+    });
+  }
+};

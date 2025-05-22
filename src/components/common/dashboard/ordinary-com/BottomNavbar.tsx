@@ -10,8 +10,7 @@ import {
   User2,
   LucideProps,
 } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Profile from "@/components/profile";
 
 interface NavLinkItem {
@@ -30,10 +29,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 const BottomNavbar: FC = () => {
   const location = useLocation();
-  const user = useAppSelector(selectCurrentUser);
-  const dispatch = useAppDispatch();
+  const user = false;
+  // const user = useAppSelector((state) => state.auth);
+  // const dispatch = useAppDispatch();
   const navItems: NavLinkItem[] = [
     {
       label: "Home",
@@ -62,12 +63,12 @@ const BottomNavbar: FC = () => {
       label: "Account",
       href: "/auth/login",
       icon: User2,
-      show: user ? false : true,
+      show: true,
     },
   ];
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  // };
   return (
     <section className="fixed bottom-0 inset-x-0 z-40 md:hidden border-t bg-background shadow-sm">
       <ul className="flex justify-between items-center py-2">
@@ -128,7 +129,7 @@ const BottomNavbar: FC = () => {
                     </DropdownMenuItem>
                   </Link>
                   {/* } */}
-                  {user && user.role === "admin" ? (
+                  {user && user?.role === "admin" ? (
                     <Link to="/dashboard">
                       <DropdownMenuItem className="cursor-pointer">
                         <span>Dashboard</span>

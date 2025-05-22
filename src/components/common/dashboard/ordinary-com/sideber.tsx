@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "@/providers/theme-provider";
-import { useAppDispatch } from "@/redux/hooks";
-import { logout } from "@/redux/features/auth/authSlice";
 import { SidebarModeToggle } from "@/components/sidebar-mode-toggle";
 import { dashboardItem } from "./sideber-items";
 import { SidebarProps } from "@/types";
@@ -13,7 +11,7 @@ import { SidebarProps } from "@/types";
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const { theme } = useTheme();
-  const dispatch = useAppDispatch();
+
   const sidebarItems: SidebarProps[] = dashboardItem.sidebarItems;
 
   const toggleSidebar = () => {
@@ -32,9 +30,7 @@ export default function Sidebar() {
       ? "/logo.png"
       : "/logo-black.png";
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  const handleLogout = () => {};
   return (
     <div
       className={cn(

@@ -1,13 +1,11 @@
-import { useUpdateUserMutation } from "@/redux/features/user/userApi";
 import { TUserData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import EditUserFormUi from "@/components/edit-user-form-ui";
 import { CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Save, X } from "lucide-react";
+import { X } from "lucide-react";
 import { toast } from "sonner";
 import { errorMessageGenerator } from "@/utils/errorMessageGenerator";
 import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
@@ -57,7 +55,6 @@ type PropTypes = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 export default function UserEditForm({ userData, setIsOpen }: PropTypes) {
-  const [updateMyData, { isLoading }] = useUpdateUserMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -85,10 +82,6 @@ export default function UserEditForm({ userData, setIsOpen }: PropTypes) {
         }
       }
 
-      await updateMyData({
-        userId: userData._id,
-        updatedData: userNewData,
-      }).unwrap();
       toast.success("User updated successfully!", {
         id: toastId,
         duration: 2000,
@@ -105,7 +98,7 @@ export default function UserEditForm({ userData, setIsOpen }: PropTypes) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <EditUserFormUi form={form} isLoading={isLoading} userData={userData} />
+        {/* <EditUserFormUi form={form} isLoading={isLoading} userData={userData} /> */}
         <CardFooter className="flex justify-end gap-2">
           <Button
             variant="outline"
@@ -116,10 +109,10 @@ export default function UserEditForm({ userData, setIsOpen }: PropTypes) {
             <X size={16} />
             Cancel
           </Button>
-          <Button className="flex items-center gap-1" disabled={isLoading}>
+          {/* <Button className="flex items-center gap-1" disabled={isLoading}>
             <Save size={16} />
             {isLoading ? "Saving..." : "Save Changes"}
-          </Button>
+          </Button> */}
         </CardFooter>
       </form>
     </Form>
