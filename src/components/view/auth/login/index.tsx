@@ -7,7 +7,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -24,7 +23,7 @@ import { useState } from "react";
 import PassToggle from "@/components/reusable/pass-toggle";
 import { loginSchema } from "@/schemas";
 import { useUserLoginMutation } from "@/redux/features/auth/authApi";
-import { Loader2 } from "lucide-react";
+import { Facebook, Github, Loader2, Mail } from "lucide-react";
 import { ResponseApiErrors, ShowToast } from "@/helpers";
 import { useAppDispatch } from "@/redux/hooks";
 import { decodedToken } from "@/helpers/axios/generate-token";
@@ -169,22 +168,68 @@ export default function Login() {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex flex-col space-y-2 border-t pt-6">
-        <p className="text-sm text-center text-muted-foreground">
-          Don't have an account?{" "}
-          <Link
-            to={"/auth/sign-up"}
-            className="text-primary font-medium hover:underline"
-          >
-            Sign up
-          </Link>
-        </p>
-        <div className="flex items-center justify-center text-xs text-muted-foreground">
-          <span>Secure login</span>
-          <span className="mx-2">•</span>
-          <span>Privacy protected</span>
+
+      <div>
+        <div className="border-b pb-2">
+          {/* Divider */}
+          <div className="relative mb-2">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
+            </div>
+            <div className="relative flex justify-center">
+              <span className="px-4 bg-white text-sm font-medium text-gray-500">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          {/* Perfect Circular Social Buttons */}
+          <div className="flex justify-center space-x-3">
+            {/* GitHub */}
+            <button
+              type="button"
+              className="group cursor-pointer flex items-center justify-center w-8 h-8  rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-300"
+            >
+              <Github className="w-5 h-5 p-[2px] text-gray-600 transition-colors group-hover:text-gray-900" />
+              <span className="sr-only">Continue with GitHub</span>
+            </button>
+
+            {/* Google */}
+            <button
+              type="button"
+              className="group cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-300"
+            >
+              <Mail className="w-5 h-5 p-[2px] text-gray-600 transition-colors group-hover:text-red-500" />
+              <span className="sr-only">Continue with Google</span>
+            </button>
+
+            {/* Facebook */}
+            <button
+              type="button"
+              className="group cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-300"
+            >
+              <Facebook className="w-5 h-5 p-[2px] text-gray-600 transition-colors group-hover:text-[#1877F2]" />
+              <span className="sr-only">Continue with Facebook</span>
+            </button>
+          </div>
         </div>
-      </CardFooter>
+        <div className="flex pt-0 flex-col space-y-2 mt-2">
+          <p className="text-sm text-center text-muted-foreground">
+            Don't have an account?{" "}
+            <Link
+              to={"/auth/sign-up"}
+              className="text-primary font-medium hover:underline"
+            >
+              Sign up
+            </Link>
+          </p>
+          <div className="flex items-center justify-center text-xs text-muted-foreground">
+            <span>Secure login</span>
+            <span className="mx-2">•</span>
+            <span>Privacy protected</span>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 }

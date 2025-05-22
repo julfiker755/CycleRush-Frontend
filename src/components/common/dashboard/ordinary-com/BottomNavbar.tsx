@@ -10,7 +10,6 @@ import {
   User2,
   LucideProps,
 } from "lucide-react";
-// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Profile from "@/components/profile";
 
 interface NavLinkItem {
@@ -29,12 +28,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { logout } from "@/redux/features/auth/authSlice";
 
 const BottomNavbar: FC = () => {
   const location = useLocation();
-  const user = false;
-  // const user = useAppSelector((state) => state.auth);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
   const navItems: NavLinkItem[] = [
     {
       label: "Home",
@@ -66,9 +67,9 @@ const BottomNavbar: FC = () => {
       show: true,
     },
   ];
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  // };
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <section className="fixed bottom-0 inset-x-0 z-40 md:hidden border-t bg-background shadow-sm">
       <ul className="flex justify-between items-center py-2">
