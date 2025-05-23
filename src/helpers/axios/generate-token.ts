@@ -7,7 +7,7 @@ export const decodedToken = (token: string) => jwtDecode<AuthProps>(token);
 export const GenerateAccessToken = async () => {
   return await instance({
     url: import.meta.env.VITE_PUBLIC_API_URL + "/auth/refresh-token",
-    method: "POST",
+    method: "GET",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
   });

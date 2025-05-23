@@ -24,11 +24,12 @@ import PassToggle from "@/components/reusable/pass-toggle";
 import { loginSchema } from "@/schemas";
 import { useUserLoginMutation } from "@/redux/features/auth/authApi";
 import { Facebook, Github, Loader2, Mail } from "lucide-react";
-import { ResponseApiErrors, ShowToast } from "@/helpers";
+import { responseApiErrors, ShowToast } from "@/helpers";
 import { useAppDispatch } from "@/redux/hooks";
 import { decodedToken } from "@/helpers/axios/generate-token";
 import { setUser } from "@/redux/features/auth/authSlice";
-import { delay } from "@/lib/utils";
+import { delay, setLocalStroage } from "@/lib/utils";
+import { authKey } from "@/constant";
 
 // Create a type from the schema
 type FormValues = z.infer<typeof loginSchema>;
@@ -49,7 +50,8 @@ export default function Login() {
   // Form submission handler
   const onSubmit = async (values: FormValues) => {
     const res = await userLogin(values).unwrap();
-    const token = res?.refreshToken;
+    if (!res?.success) responseApiErrors(res, form);
+    const token = res?.accessToken;
     const userInfo = token && decodedToken(token);
     if (token) {
       dispatch(setUser({ user: userInfo, token: token }));
@@ -58,6 +60,7 @@ export default function Login() {
         title: "Login Successful",
         description: "You have successfully logged in",
       });
+      setLocalStroage(authKey, token);
       await delay(3000);
       if (userInfo?.role === "admin") {
         navigate("/dashboard/analytics");
@@ -66,7 +69,6 @@ export default function Login() {
       }
       form.reset();
     }
-    ResponseApiErrors(res, form);
   };
 
   return (

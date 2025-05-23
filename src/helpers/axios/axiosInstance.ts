@@ -1,7 +1,8 @@
-import { getLocalStroage} from "@/lib/utils";
+import { getLocalStroage, setLocalStroage} from "@/lib/utils";
 import { ResponseSuccessProps } from "@/types";
 import axios from "axios";
 import { GenerateAccessToken } from "./generate-token";
+import { authKey } from "@/constant";
 
 
 const instance = axios.create();
@@ -13,7 +14,7 @@ instance.defaults.timeout = 60000;
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
-    const accessToken = getLocalStroage("accessToken");
+    const accessToken = getLocalStroage(authKey);
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }
@@ -43,7 +44,7 @@ instance.interceptors.response.use(
       const response = await GenerateAccessToken();
       const accessToken = response?.data.accessToken;
       config.headers["Authorization"] = accessToken;
-      // setLocalStroage(authKey, accessToken);
+      setLocalStroage(authKey, accessToken);
       return instance(config);
     }
     return error?.response;

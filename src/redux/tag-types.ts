@@ -1,7 +1,9 @@
 export enum tagTypes {
-  product="product"
+  product="product",
+  wish="wish"
 }
 
 export const tagTypesList = [
-  tagTypes.product
+  tagTypes.product,
+  tagTypes.wish
 ];

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { TableCell, TableRow } from "@/components/ui/table";
 import {
   Tooltip,
@@ -7,36 +6,19 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { WishlistProductType } from "@/types";
 import { SquareChartGantt, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
-type PropsType = {
-  product: WishlistProductType;
-};
-export default function WishlistCard({ product }: PropsType) {
-  const productImage = Array.isArray(product.image)
-    ? product.image[0]
-    : product.image || "/api/placeholder/64/64";
+export default function WishlistCard({ product }: any) {
   return (
     <TableRow className="relative">
-      <TableCell>
-        <div className="flex justify-center items-center">
-          {" "}
-          <Checkbox />
-        </div>
-      </TableCell>
-
       <TableCell>
         <div className="flex items-center space-x-4 relative">
           <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden">
             <img
-              src={productImage}
+              src={product.images[0]}
               alt={product.name}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src = "/api/placeholder/64/64";
-              }}
             />
           </div>
           <div>
@@ -46,12 +28,12 @@ export default function WishlistCard({ product }: PropsType) {
         </div>
       </TableCell>
       <TableCell>
-        <p>6</p>
+        <p>{product.category}</p>
       </TableCell>
       <TableCell>
-        <p>$ 66</p>
+        <p>{product.price}</p>
       </TableCell>
-      <TableCell>12/03/2002</TableCell>
+      <TableCell>{product.frameMaterial}</TableCell>
       <TableCell>
         <TooltipProvider>
           <Tooltip>

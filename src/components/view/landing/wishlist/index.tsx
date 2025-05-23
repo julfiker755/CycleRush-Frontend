@@ -19,23 +19,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Item } from "@/components/dummy-data/data";
 import WishlistCard from "@/components/common/wishlist-card";
+import { useGetWishQuery } from "@/redux/api/wishApi";
+import { TableSkeleton } from "@/components/reusable/table-skeleton";
+import { TableNoItem } from "@/components/reusable/table-no-item";
 export default function Wishlist() {
-  //     return (
-  //       <section className="py-8 px-4 max-w-4xl mx-auto text-center">
-  //         <div className="flex flex-col items-center justify-center py-12 space-y-4">
-  //           <Heart className="w-16 h-16 text-gray-400" />
-  //           <h2 className="text-2xl font-semibold">Your wishlist is empty</h2>
-  //           <p className="text-gray-500">
-  //             Add some products to your wishlist to see them here.
-  //           </p>
-  //         </div>
-  //       </section>
-  //     );
-  //   }
-  // Heart,
+  const { data: wishList, isLoading } = useGetWishQuery({});
   return (
     <section className="py-8">
       <div className="mb-6 flex items-center justify-between">
@@ -61,33 +50,36 @@ export default function Wishlist() {
           </AlertDialogContent>
         </AlertDialog>
       </div>
+
       <Card className="relative">
-        {/* <Skeleton className="absolute top-0 left-0 w-full h-full" /> */}
         <CardContent className="p-0 ">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="min-w-[70px] w-[70px]">
-                  <div className="w-full flex justify-center items-center">
-                    {" "}
-                    <Checkbox />
-                  </div>
+                <TableHead className="w-[300px]">
+                  <span className="ml-3">Product</span>
                 </TableHead>
-                <TableHead className="w-[300px]">Product</TableHead>
-                <TableHead>Stock</TableHead>
+                <TableHead>Category</TableHead>
                 <TableHead>Price</TableHead>
-                <TableHead>Date Added</TableHead>
+                <TableHead>Material</TableHead>
                 <TableHead className="w-[80px]">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {Item.map((product: any) => (
-                <WishlistCard key={product._id} product={product} />
-              ))}
+              {isLoading ? (
+                <TableSkeleton length={4} colSpan={5} />
+              ) : wishList?.data?.length > 0 ? (
+                wishList?.data?.map((product: any) => (
+                  <WishlistCard key={product._id} product={product} />
+                ))
+              ) : (
+                <TableNoItem title="Your wishlist is empty" colSpan={5} />
+              )}
             </TableBody>
           </Table>
         </CardContent>
       </Card>
+
       <div className="mt-4 space-x-4 text-end">
         <Button variant={"outline"}>Add selected to cart</Button>
         <Button>Add all to cart</Button>

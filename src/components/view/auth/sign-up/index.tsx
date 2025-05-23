@@ -24,7 +24,7 @@ import { useState } from "react";
 import PassToggle from "@/components/reusable/pass-toggle";
 import { signUpSchema } from "@/schemas";
 import { useSignUpCustomerMutation } from "@/redux/features/auth/authApi";
-import { ResponseApiErrors, ShowToast } from "@/helpers";
+import { responseApiErrors, ShowToast } from "@/helpers";
 import { delay } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
@@ -48,6 +48,7 @@ export default function SignUp() {
   // Form submission handler
   const onSubmit = async (values: FormValues) => {
     const res = await signUpCustomer(values).unwrap();
+    if (!res?.success) responseApiErrors(res, form);
     if (res._id) {
       ShowToast({
         type: "success",
@@ -58,7 +59,6 @@ export default function SignUp() {
       navigate("/auth/login");
       form.reset();
     }
-    ResponseApiErrors(res, form);
   };
 
   return (
