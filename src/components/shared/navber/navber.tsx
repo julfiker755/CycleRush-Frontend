@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { LogOut, ShoppingBag, User, UserRound } from "lucide-react";
+import {
+  LayoutDashboard,
+  LogOut,
+  ShoppingBag,
+  User,
+  UserRound,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link, useLocation } from "react-router-dom";
@@ -85,18 +91,29 @@ const Navbar: FC = () => {
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
-                  <Link to="/profile">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>My Profile</span>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link to="/my-orders">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <ShoppingBag className="mr-2 h-4 w-4" />
-                      <span>My Orders</span>
-                    </DropdownMenuItem>
-                  </Link>
+                  {user?.role == "admin" ? (
+                    <Link to="/dashboard/analytics">
+                      <DropdownMenuItem className="cursor-pointer">
+                        <LayoutDashboard className="mr-2 h-4 w-4" />
+                        <span>Dashboard</span>
+                      </DropdownMenuItem>
+                    </Link>
+                  ) : (
+                    <>
+                      <Link to="/profile">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <User className="mr-2 h-4 w-4" />
+                          <span>My Profile</span>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link to="/my-orders">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <ShoppingBag className="mr-2 h-4 w-4" />
+                          <span>My Orders</span>
+                        </DropdownMenuItem>
+                      </Link>
+                    </>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="cursor-pointer text-primary"

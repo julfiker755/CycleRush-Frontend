@@ -14,4 +14,3 @@ export const ShowToast = ({ type, title, description }: toastProps) => {
     toast.error(title, { description });
   }
 };
-

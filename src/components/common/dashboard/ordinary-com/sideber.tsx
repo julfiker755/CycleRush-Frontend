@@ -41,7 +41,7 @@ export default function Sidebar() {
       {/* Header with logo and toggle button */}
       <div className="flex items-center h-14 border-b relative ">
         <Link
-          to={"/dashboard"}
+          to={"/dashboard/analytics"}
           className={`flex items-center gap-1 ${
             collapsed ? "px-2 mx-auto" : "px-4"
           }`}
