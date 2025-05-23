@@ -2,11 +2,23 @@
 
 > **CycleRush** is a modern bicycle e-commerce platform crafted for seamless shopping experiences, powerful admin control, and secure backend integration. From smooth UI interactions to Stripe-powered payments and analytics, CycleRush is designed for performance and scalability.
 
+## 🔐 Demo Credentials
+
+Use the following demo credentials to log in and explore the application:
+
+| **Role**   | **Email**              | **Password** |
+|------------|------------------------|--------------|
+| Customer   | `customer@demo.com`    | `12345678`   |
+| Admin      | `admin@demo.com`       | `12345678`   |
+
+
+
+
 ---
 
 ## 📂 Backend Repository
 
-Looking for the server-side code? Explore the **[CycleRush Backend – NoSQL Version](https://github.com/julfiker755/CycleRush-Backend.git)**.
+Looking for the server-side code? Explore the **[CycleRush Backend](https://github.com/julfiker755/CycleRush-Backend.git)**.
 
 ---
 
