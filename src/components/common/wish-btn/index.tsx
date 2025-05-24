@@ -2,7 +2,7 @@ import { useCreateWishMutation, useGetWishQuery } from "@/redux/api/wishApi";
 import { Heart } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 
-export default function WishlistBtn({ id }: { id: string }) {
+export default function WishlistBtn({ id }: { id?: string }) {
   const { data: wishItem } = useGetWishQuery({});
   const [createWish, { isLoading: isCreating }] = useCreateWishMutation();
   const [isWishlist, setIsWishlist] = useState(false);

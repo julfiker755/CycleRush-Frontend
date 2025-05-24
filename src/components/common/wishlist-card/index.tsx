@@ -1,15 +1,22 @@
-import { Button } from "@/components/ui/button";
+import { DroupdownActions } from "@/components/reusable/table-droupdown";
 import { TableCell, TableRow } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { SquareChartGantt, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ShowToast } from "@/helpers";
+import { useDeleteWishMutation } from "@/redux/api/wishApi";
 
 export default function WishlistCard({ product }: any) {
+  const [deleteWish] = useDeleteWishMutation();
+
+  const handleDelete = async (id: string) => {
+    const res = await deleteWish(id).unwrap();
+    if (res?._id) {
+      ShowToast({
+        type: "success",
+        title: "Delete Successful",
+        description: "You have wish delete successfully",
+      });
+    }
+  };
+
   return (
     <TableRow className="relative">
       <TableCell>
@@ -35,33 +42,20 @@ export default function WishlistCard({ product }: any) {
       </TableCell>
       <TableCell>{product.frameMaterial}</TableCell>
       <TableCell>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant={"ghost"} size={"icon"}>
-                <X />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p className="text-xs">Remove from wishlist</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link to={`/product-details/${product._id}`}>
-                {" "}
-                <Button variant={"outline"} size={"icon"}>
-                  <SquareChartGantt />
-                </Button>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p className="text-xs">Details</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <DroupdownActions
+          actions={[
+            {
+              type: "link",
+              label: "Details",
+              to: `/product-details/${product.wishId}`,
+            },
+            {
+              type: "button",
+              label: "Delete",
+              onClick: () => handleDelete(product._id),
+            },
+          ]}
+        />
       </TableCell>
     </TableRow>
   );
