@@ -4,13 +4,21 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import InnerImageZoom from "react-inner-image-zoom";
 import { Button } from "@/components/ui/button";
 
-const ImageSlider = ({ images }: { images: string[]; id: string }) => {
+const ImageSlider = ({
+  images,
+  des,
+}: {
+  images: string[];
+  des: any;
+  id?: string;
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <>
+    <div>
+      {/* slider section */}
       <div className="relative">
-        <div className="relative w-full max-w-3xl mx-auto">
+        <div className="relative w-full max-w-3xl mx-auto border rounded-md">
           {/* Slide Image */}
           <PhotoProvider>
             <div className="overflow-hidden relative rounded-lg flex sliderParent">
@@ -76,7 +84,23 @@ const ImageSlider = ({ images }: { images: string[]; id: string }) => {
           ))}
         </div>
       </div>
-    </>
+      {/* Product Description */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-6 bg-gradient-to-b from-blue-600 to-purple-600 rounded-full"></div>
+          <h3 className="text-lg font-semibold">Product Details</h3>
+        </div>
+
+        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3  dark:border-gray-700">
+          <p
+            className="text-muted-foreground leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: des?.replace(/\n/g, "<br>"),
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

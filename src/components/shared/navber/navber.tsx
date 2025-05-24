@@ -21,7 +21,7 @@ import { useTheme } from "@/providers/theme-provider";
 import NavFilterSheet from "@/components/common/shop/nav-filter-sheet";
 import MyCart from "./my-cart";
 import MyWishlist from "./my-wishlist";
-import { logout } from "@/redux/features/auth/authSlice";
+import { signOut } from "@/redux/features/auth/authSlice";
 
 interface NavItem {
   label: string;
@@ -40,7 +40,7 @@ const Navbar: FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(signOut());
   };
 
   const isSystemDark = window.matchMedia(

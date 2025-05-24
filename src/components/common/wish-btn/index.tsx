@@ -1,4 +1,6 @@
+import { ShowToast } from "@/helpers";
 import { useCreateWishMutation, useGetWishQuery } from "@/redux/api/wishApi";
+import { useAppSelector } from "@/redux/hooks";
 import { Heart } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 
@@ -6,6 +8,7 @@ export default function WishlistBtn({ id }: { id?: string }) {
   const { data: wishItem } = useGetWishQuery({});
   const [createWish, { isLoading: isCreating }] = useCreateWishMutation();
   const [isWishlist, setIsWishlist] = useState(false);
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (wishItem?.data?.length > 0) {
@@ -24,10 +27,19 @@ export default function WishlistBtn({ id }: { id?: string }) {
       console.error("Add to wishlist failed:", error);
     }
   }, [isWishlist, createWish, id, isCreating]);
-
   return (
     <button
-      onClick={handleWishlistToggle}
+      onClick={() => {
+        if (user) {
+          handleWishlistToggle();
+        } else {
+          ShowToast({
+            type: "error",
+            title: "Login here to continue",
+            description: "Please log in to enjoy Wist products.",
+          });
+        }
+      }}
       className="flex items-center gap-2 cursor-pointer"
       disabled={isCreating || isWishlist}
     >

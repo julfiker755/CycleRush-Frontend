@@ -1,6 +1,7 @@
 import { DroupdownActions } from "@/components/reusable/table-droupdown";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { ShowToast } from "@/helpers";
+import { PlaceholderImg } from "@/lib/utils";
 import { useDeleteWishMutation } from "@/redux/api/wishApi";
 
 export default function WishlistCard({ product }: any) {
@@ -23,24 +24,28 @@ export default function WishlistCard({ product }: any) {
         <div className="flex items-center space-x-4 relative">
           <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden">
             <img
-              src={product.images[0]}
-              alt={product.name}
+              src={
+                product?.images?.length > 0
+                  ? product?.images[0]
+                  : PlaceholderImg()
+              }
+              alt={product?.name}
               className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <h3 className="font-medium text-sm">{product.name}</h3>
-            <p className="text-xs text-gray-500">{product.brand}</p>
+            <h3 className="font-medium text-sm">{product?.name}</h3>
+            <p className="text-xs text-gray-500">{product?.brand}</p>
           </div>
         </div>
       </TableCell>
       <TableCell>
-        <p>{product.category}</p>
+        <p>{product?.category}</p>
       </TableCell>
       <TableCell>
-        <p>{product.price}</p>
+        <p>{product?.price}</p>
       </TableCell>
-      <TableCell>{product.frameMaterial}</TableCell>
+      <TableCell>{product?.frameMaterial}</TableCell>
       <TableCell>
         <DroupdownActions
           actions={[

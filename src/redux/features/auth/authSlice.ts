@@ -1,4 +1,7 @@
+import { authKey } from '@/constant';
+import { localStroageRemove } from '@/lib/utils';
 import { createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 
 export type userProps = {
@@ -35,5 +38,11 @@ const authSlice = createSlice({
 });
 
 export const { setUser, logout } = authSlice.actions;
+
+export const signOut = () => (dispatch: any) => {
+  localStroageRemove(authKey)
+  Cookies.remove(authKey)
+  dispatch(logout()); 
+};
 
 export default authSlice.reducer;
