@@ -1,24 +1,44 @@
-import { Button } from "@/components/ui/button";
+import { useCreateWishMutation, useGetWishQuery } from "@/redux/api/wishApi";
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-export default function WishlistBtn() {
-  const [isWIshlist, setIsWishlist] = useState(false);
+export default function WishlistBtn({ id }: { id: string }) {
+  const { data: wishItem } = useGetWishQuery({});
+  const [createWish, { isLoading: isCreating }] = useCreateWishMutation();
+  const [isWishlist, setIsWishlist] = useState(false);
+
+  useEffect(() => {
+    if (wishItem?.data?.length > 0) {
+      const exists = wishItem?.data?.some((item: any) => item.wishId === id);
+      setIsWishlist(exists);
+    }
+  }, [wishItem, id]);
+
+  const handleWishlistToggle = useCallback(async () => {
+    if (isCreating || isWishlist) return;
+
+    try {
+      await createWish({ wishId: id }).unwrap();
+      setIsWishlist(true);
+    } catch (error) {
+      console.error("Add to wishlist failed:", error);
+    }
+  }, [isWishlist, createWish, id, isCreating]);
 
   return (
-    <Button
-      onClick={() => setIsWishlist(!isWIshlist)}
-      variant="ghost"
-      size="sm"
-      className="flex items-center gap-2"
+    <button
+      onClick={handleWishlistToggle}
+      className="flex items-center gap-2 cursor-pointer"
+      disabled={isCreating || isWishlist}
     >
-      {isWIshlist ? (
-        <Heart className="fill-red-500 text-red-500" size={18} />
+      {isWishlist ? (
+        <Heart className="fill-fuchsia-600 text-fuchsia-600" size={18} />
       ) : (
-        <Heart size={18} />
+        <Heart
+          size={18}
+          className="text-gray-500 hover:fill-fuchsia-600 hover:text-fuchsia-600"
+        />
       )}
-
-      {/* <span>Wishlist</span> */}
-    </Button>
+    </button>
   );
 }
