@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { TUserData } from "@/types";
 import { HomeIcon, PhoneIcon, UserRoundPen } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -20,7 +19,7 @@ export default function SingleUser({
   user,
   index,
 }: {
-  user: TUserData;
+  user: any;
   index: number;
 }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);

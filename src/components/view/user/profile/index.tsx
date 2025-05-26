@@ -1,123 +1,78 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+import { User, CreditCard, Shield, Settings } from "lucide-react";
+import { SidebarNavigation } from "@/components/common/profile/sidebar-navigation";
+import { OverviewTab } from "@/components/common/profile/tabs/overview-tab";
+import { AccountTab } from "@/components/common/profile/tabs/account-tab";
+import { SecurityTab } from "@/components/common/profile/tabs/security-tab";
+import { SettingsTab } from "@/components/common/profile/tabs/settings-tab";
+import type { ActivityProps, TabIProps, TabProps } from "@/types";
 
 export default function Profile() {
-  // if (isLoading) {
-  //   return (
-  //     <Card className="w-full max-w-4xl mx-auto ">
-  //       <CardHeader>
-  //         <Skeleton className="h-8 w-48" />
-  //         <Skeleton className="h-4 w-32" />
-  //       </CardHeader>
-  //       <CardContent className="space-y-6">
-  //         <div className="flex items-center space-x-4">
-  //           <Skeleton className="h-20 w-20 rounded-full" />
-  //           <div className="space-y-2">
-  //             <Skeleton className="h-4 w-32" />
-  //             <Skeleton className="h-4 w-48" />
-  //           </div>
-  //         </div>
-  //         <div className="space-y-4">
-  //           {[1, 2, 3, 4].map((i) => (
-  //             <div key={i} className="space-y-2">
-  //               <Skeleton className="h-4 w-24" />
-  //               <Skeleton className="h-10 w-full" />
-  //             </div>
-  //           ))}
-  //         </div>
-  //       </CardContent>
-  //     </Card>
-  //   );
-  // }
+  const [activeTab, setActiveTab] = useState<TabProps>("overview");
 
-  // if (isError) {
-  //   return (
-  //     <Card className="w-full max-w-3xl mx-auto">
-  //       <CardHeader>
-  //         <CardTitle>Error</CardTitle>
-  //       </CardHeader>
-  //       <CardContent>
-  //         <p className="text-red-500">
-  //           Failed to load profile data. Please try again later.
-  //         </p>
-  //       </CardContent>
-  //       <CardFooter>
-  //         <Button onClick={() => window.location.reload()}>Retry</Button>
-  //       </CardFooter>
-  //     </Card>
-  //   );
-  // }
+  const userData: any = {
+    name: "Julfiker Islam",
+    email: "julfiker755.bd@gmail.com",
+    phone: "01741705755",
+    address: "Khansama, Dinajpur",
+    role: "Customer",
+    status: "Active",
+    joinDate: "January 2023",
+    bio: "Passionate developer and tech enthusiast. Love building innovative solutions and learning new technologies.",
+    verified: true,
+    totalOrders: 24,
+    totalSpent: "$2,450",
+    loyaltyPoints: 1250,
+  };
+
+  const recentActivity: ActivityProps[] = [
+    { action: "Updated profile picture", date: "2 days ago", type: "profile" },
+    { action: "Completed order #1234", date: "1 week ago", type: "order" },
+    { action: "Changed password", date: "2 weeks ago", type: "security" },
+    { action: "Added new address", date: "3 weeks ago", type: "profile" },
+  ];
+
+  const tabs: TabIProps[] = [
+    { id: "overview", label: "Overview", icon: User },
+    { id: "account", label: "Account", icon: CreditCard },
+    { id: "security", label: "Security", icon: Shield },
+    { id: "settings", label: "Settings", icon: Settings },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "overview":
+        return (
+          <OverviewTab userData={userData} recentActivity={recentActivity} />
+        );
+      case "account":
+        return <AccountTab userData={userData} />;
+      case "security":
+        return <SecurityTab />;
+      case "settings":
+        return <SettingsTab />;
+      default:
+        return (
+          <OverviewTab userData={userData} recentActivity={recentActivity} />
+        );
+    }
+  };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <div>
-          <CardTitle className="text-2xl font-bold">User Profile</CardTitle>
-          <CardDescription>Manage your account information</CardDescription>
-        </div>
-      </CardHeader>
+    <div className="min-h-screen bg-gray-50/30">
+      <div className="flex">
+        <SidebarNavigation
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
 
-      <CardContent>
-        <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row gap-6">
-            <Avatar className="w-24 h-24">
-              <AvatarImage
-                className="object-cover"
-                src={"/default-user.png"}
-                alt={"userData.name"}
-              />
-              <AvatarFallback>Julfiker Islam</AvatarFallback>
-            </Avatar>
-
-            <div className="flex-1">
-              <h3 className="text-2xl font-semibold">Julfiker </h3>
-              <div className="flex items-center gap-2 mt-1">
-                <Badge variant="outline" className="capitalize">
-                  Customer
-                </Badge>
-                <span className="text-sm text-muted-foreground">
-                  Julfiker755.bd@gmail.com
-                </span>
-              </div>
-
-              <div className="mt-6 space-y-4">
-                <div>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Contact Number
-                  </span>
-                  <p>01741705755</p>
-                </div>
-
-                <div>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Address
-                  </span>
-                  <p>Khansama,dinajpur</p>
-                </div>
-
-                <div>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Account Status
-                  </span>
-                  <p>
-                    {/* <Badge variant="destructive">Blocked</Badge> */}
-                    <Badge variant="default" className="bg-green-500">
-                      Active
-                    </Badge>
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="flex-1">
+          <div className="p-8">
+            <div className="max-w-4xl">{renderContent()}</div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

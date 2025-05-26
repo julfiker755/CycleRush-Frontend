@@ -5,9 +5,11 @@ import { ShoppingCart, Info } from "lucide-react";
 import WishlistBtn from "../wish-btn";
 import { useCreateCartMutation } from "@/redux/api/cartApi";
 import { ShowToast } from "@/helpers";
+import { useAppSelector } from "@/redux/hooks";
 
 export default function ProductCard({ product }: { product: any }) {
   const [createCart, { isLoading }] = useCreateCartMutation();
+  const { user } = useAppSelector((state) => state.auth);
 
   const handleStoreCart = async () => {
     const result = await createCart({ productId: product._id }).unwrap();
@@ -50,7 +52,7 @@ export default function ProductCard({ product }: { product: any }) {
         </h2>
         <div className="flex justify-between items-center mt-3">
           <span className="text-sm sm:text-base font-bold text-primary">
-            ৳{product.price.toLocaleString()}
+            $ {product.price.toLocaleString()}
           </span>
           <span className="text-xs sm:text-sm text-muted-foreground">
             {product.inStock > 0
@@ -62,7 +64,17 @@ export default function ProductCard({ product }: { product: any }) {
 
       <CardFooter className="flex gap-2 px-2 pb-4 mt-auto pt-0">
         <Button
-          onClick={handleStoreCart}
+          onClick={() => {
+            if (user) {
+              handleStoreCart();
+            } else {
+              ShowToast({
+                type: "error",
+                title: "Login here to continue",
+                description: "Please log in to enjoy Cart products.",
+              });
+            }
+          }}
           disabled={isLoading}
           className="flex-1 text-xs sm:text-sm rounded-sm  h-9 px-2 sm:px-3"
         >

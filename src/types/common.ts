@@ -32,3 +32,22 @@ export type AuthProps = {
 };
 
 export type envProps = string | undefined
+
+
+
+// profile
+import type React from "react"
+
+export interface ActivityProps {
+  action: string
+  date: string
+  type: "profile" | "order" | "security"
+}
+
+export interface TabIProps {
+  id: string
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+export type TabProps = "overview" | "account" | "security" | "settings"

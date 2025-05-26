@@ -12,10 +12,9 @@ import { Separator } from "@/components/ui/separator";
 // } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { MinusIcon, PlusIcon, X } from "lucide-react";
-import { CartProduct } from "@/types";
 
 type PropsType = {
-  product: CartProduct;
+  product: any;
 };
 export default function ShippingProduct({
   product,

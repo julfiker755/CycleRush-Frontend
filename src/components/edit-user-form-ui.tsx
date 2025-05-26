@@ -1,4 +1,10 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,19 +12,26 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import { useRef } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { TUserData } from "@/types";
 type PropsType = {
-  form: UseFormReturn<{
-    name: string;
-    contactNumber: string;
-    address?: string | undefined;
-    profileImage?: File | undefined;
-  }, any, undefined>;
-  userData: TUserData;
+  form: UseFormReturn<
+    {
+      name: string;
+      contactNumber: string;
+      address?: string | undefined;
+      profileImage?: File | undefined;
+    },
+    any,
+    undefined
+  >;
+  userData: any;
   isLoading: boolean;
-}
-export default function EditUserFormUi({ form, userData, isLoading }: PropsType) {
-  const selectProfileRef = useRef<HTMLInputElement | null>(null)
+};
+export default function EditUserFormUi({
+  form,
+  userData,
+  isLoading,
+}: PropsType) {
+  const selectProfileRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className="flex flex-col sm:flex-row gap-6">
       <FormField
@@ -29,8 +42,18 @@ export default function EditUserFormUi({ form, userData, isLoading }: PropsType)
             <FormControl>
               <div className="flex flex-col items-center gap-2">
                 <Avatar className="w-24 h-24 object-cover">
-                  <AvatarImage src={field.value ? URL.createObjectURL(field.value) : (userData.profile || '/default-user.png')} alt={userData.name} className="object-cover" />
-                  <AvatarFallback>{userData?.name?.substring(0, 2)?.toUpperCase()}</AvatarFallback>
+                  <AvatarImage
+                    src={
+                      field.value
+                        ? URL.createObjectURL(field.value)
+                        : userData.profile || "/default-user.png"
+                    }
+                    alt={userData.name}
+                    className="object-cover"
+                  />
+                  <AvatarFallback>
+                    {userData?.name?.substring(0, 2)?.toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <Label htmlFor="profile">Upload Profile Image</Label>
                 <Input
@@ -42,7 +65,14 @@ export default function EditUserFormUi({ form, userData, isLoading }: PropsType)
                   className="bg-gray-50 hidden"
                   onChange={(e) => field.onChange(e.target.files?.[0])}
                 />
-                <Button onClick={() => selectProfileRef.current?.click()} type="button" variant={"outline"} className="w-full sm:w-44">Select Image</Button>
+                <Button
+                  onClick={() => selectProfileRef.current?.click()}
+                  type="button"
+                  variant={"outline"}
+                  className="w-full sm:w-44"
+                >
+                  Select Image
+                </Button>
               </div>
             </FormControl>
             <FormMessage />

@@ -10,7 +10,6 @@ import {
   User2,
   LucideProps,
 } from "lucide-react";
-import Profile from "@/components/profile";
 
 interface NavLinkItem {
   label: string;
@@ -64,7 +63,7 @@ const BottomNavbar: FC = () => {
       label: "Account",
       href: "/auth/login",
       icon: User2,
-      show: true,
+      show: !user,
     },
   ];
   const handleLogout = () => {
@@ -112,7 +111,7 @@ const BottomNavbar: FC = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="" asChild>
                   <div className="cursor-pointer flex flex-col">
-                    <Profile />
+                    <User2 />
                     <span className="text-xs">You</span>
                   </div>
                 </DropdownMenuTrigger>

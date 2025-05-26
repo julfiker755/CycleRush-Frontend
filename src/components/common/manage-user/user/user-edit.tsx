@@ -1,4 +1,3 @@
-import { TUserData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
@@ -51,7 +50,7 @@ type UserDataType = {
 };
 
 type PropTypes = {
-  userData: TUserData;
+  userData: any;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 export default function UserEditForm({ userData, setIsOpen }: PropTypes) {

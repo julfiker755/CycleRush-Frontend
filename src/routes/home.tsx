@@ -8,6 +8,7 @@ import ProductDetails from "@/components/view/landing/shop-details";
 import Cart from "@/components/view/landing/cart";
 import OrderDetails from "@/components/view/user/order-details";
 import MainLayout from "@/components/layout/main";
+import Profile from "@/components/view/user/profile";
 
 const homeRoutes = [
   {
@@ -27,7 +28,7 @@ const homeRoutes = [
         element: <ProductDetails />,
       },
       {
-        path: "/order-details/:id",
+        path: "order-details/:id",
         element: <OrderDetails />,
       },
       {
@@ -49,6 +50,10 @@ const homeRoutes = [
       {
         path: "checkout",
         element: <Checkout />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
