@@ -46,7 +46,7 @@ export default function MyCart() {
         >
           <ShoppingCart className="h-5 w-5" />
           <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-4 h-4 text-xs flex items-center justify-center">
-            {cart?.data?.length}
+            {cart?.data?.length || 0}
           </span>
         </Button>
       </SheetTrigger>
