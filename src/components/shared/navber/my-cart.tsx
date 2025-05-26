@@ -22,16 +22,18 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Link, useNavigate } from "react-router-dom";
 import MCB_SingleProduct from "@/components/shared/navber/MCB_SingleProduct";
-import { Item } from "@/components/dummy-data/data";
+import { useGetCartQuery } from "@/redux/api/cartApi";
+import { useAppSelector } from "@/redux/hooks";
 
 export default function MyCart() {
   const navigate = useNavigate();
-  const cartProducts: any[] = Item;
+  const { user } = useAppSelector((state) => state.auth);
+  const { data: cart } = useGetCartQuery({}, { skip: !user });
 
-  // const totalPrice = cartProducts.reduce(
-  //   (total, product) => total + product.price * product.orderQuantity,
-  //   0
-  // );
+  const totalPrice = cart?.data?.reduce(
+    (c: number, p: any) => c + p.totalPrice,
+    0
+  );
 
   return (
     <Sheet>
@@ -44,7 +46,7 @@ export default function MyCart() {
         >
           <ShoppingCart className="h-5 w-5" />
           <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-4 h-4 text-xs flex items-center justify-center">
-            {cartProducts.length}
+            {cart?.data?.length}
           </span>
         </Button>
       </SheetTrigger>
@@ -52,9 +54,9 @@ export default function MyCart() {
         <SheetHeader className="border-b pb-4 px-0">
           <SheetTitle className="flex items-center justify-between">
             <span className="font-semibold text-2xl">
-              Your Cart ({cartProducts.length})
+              Your Cart ({cart?.data?.length})
             </span>
-            {cartProducts?.length > 0 && (
+            {cart?.data?.length > 0 && (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
@@ -85,9 +87,9 @@ export default function MyCart() {
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto">
-          {cartProducts.length > 0 ? (
+          {cart?.data?.length > 0 ? (
             <ul className="divide-y">
-              {cartProducts.map((product) => (
+              {cart?.data?.map((product: any) => (
                 <MCB_SingleProduct product={product} key={product._id} />
               ))}
             </ul>
@@ -106,12 +108,12 @@ export default function MyCart() {
             </div>
           )}
         </div>
-        {cartProducts.length > 0 && (
+        {cart?.data?.length > 0 && (
           <SheetFooter className="border-t pt-4 mt-auto px-0">
             <div className="w-full space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Subtotal</span>
-                <span className="text-sm font-medium">$ 88</span>
+                <span className="text-sm font-medium">$ {totalPrice}</span>
               </div>
               <p className="text-xs text-gray-500">
                 Shipping calculated at checkout

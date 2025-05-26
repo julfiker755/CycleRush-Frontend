@@ -37,7 +37,6 @@ instance.interceptors.response.use(
   },
   async function (error) {
     const config = error.config;
-    console.log(error?.response)
     const exp = error?.response?.data?.errors?.scretCode === "R1lCfyF3XN";
   
     if (exp && !config?.sent) {

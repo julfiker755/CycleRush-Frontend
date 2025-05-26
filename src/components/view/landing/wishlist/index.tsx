@@ -23,8 +23,10 @@ import WishlistCard from "@/components/common/wishlist-card";
 import { useGetWishQuery } from "@/redux/api/wishApi";
 import { TableSkeleton } from "@/components/reusable/table-skeleton";
 import { TableNoItem } from "@/components/reusable/table-no-item";
+import { useAppSelector } from "@/redux/hooks";
 export default function Wishlist() {
-  const { data: wishList, isLoading } = useGetWishQuery({});
+  const { user } = useAppSelector((state) => state.auth);
+  const { data: wishList, isLoading } = useGetWishQuery({}, { skip: !user });
   return (
     <section className="py-8">
       <div className="mb-6 flex items-center justify-between">

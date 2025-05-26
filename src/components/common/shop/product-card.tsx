@@ -3,8 +3,31 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Info } from "lucide-react";
 import WishlistBtn from "../wish-btn";
+import { useCreateCartMutation } from "@/redux/api/cartApi";
+import { ShowToast } from "@/helpers";
 
 export default function ProductCard({ product }: { product: any }) {
+  const [createCart, { isLoading }] = useCreateCartMutation();
+
+  const handleStoreCart = async () => {
+    const result = await createCart({ productId: product._id }).unwrap();
+    if (result._id) {
+      ShowToast({
+        type: "success",
+        title: "Product Added",
+        description: "Product has been added to the cart.",
+      });
+    } else {
+      if (result?.errors[0]?.path == "exsis") {
+        ShowToast({
+          type: "error",
+          title: "Exsis Product",
+          description: "Product already in cart.",
+        });
+      }
+    }
+  };
+
   return (
     <Card className="group rounded-2xl shadow-sm hover:shadow-md transition-shadow gap-3 overflow-hidden border pt-1 py-0">
       <div className="relative">
@@ -38,7 +61,11 @@ export default function ProductCard({ product }: { product: any }) {
       </CardContent>
 
       <CardFooter className="flex gap-2 px-2 pb-4 mt-auto pt-0">
-        <Button className="flex-1 text-xs sm:text-sm rounded-sm  h-9 px-2 sm:px-3">
+        <Button
+          onClick={handleStoreCart}
+          disabled={isLoading}
+          className="flex-1 text-xs sm:text-sm rounded-sm  h-9 px-2 sm:px-3"
+        >
           <ShoppingCart className="h-4 w-4 sm:mr-2" />
           <span className="hidden sm:inline">Add to Cart</span>
         </Button>
